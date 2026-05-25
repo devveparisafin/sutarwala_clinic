@@ -1,0 +1,53 @@
+@model IEnumerable<PharmacyERP.Web.Models.Entities.MedicineBatch>
+@{
+    ViewData["Title"] = "Adjust Stock";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-action="StockSummary" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to Summary
+        </a>
+    </div>
+
+    <div class="card shadow border-0 mb-4">
+        <div class="card-header bg-primary text-white py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fas fa-adjust me-2"></i>Adjust Stock - Medicine ID: @ViewBag.MedicineId</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="AdjustStock" method="post">
+                <input type="hidden" name="MedicineId" value="@ViewBag.MedicineId" />
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Select Batch</label>
+                        <select name="BatchId" class="form-select" required>
+                            <option value="">-- Select Batch --</option>
+                            @foreach (var batch in Model)
+                            {
+                                <option value="@batch.Id">@batch.BatchNo (Qty: @batch.CurrentQty, Exp: @batch.ExpiryDate.ToShortDateString())</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Adjustment Type</label>
+                        <select name="Type" class="form-select" required>
+                            <option value="1">Add (+)</option>
+                            <option value="2">Subtract (-)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Quantity</label>
+                        <input type="number" name="Quantity" class="form-control" required min="1" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Remarks/Reason</label>
+                        <textarea name="Remarks" class="form-control" rows="2" placeholder="e.g. Damage, Donation, Correction"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary px-4">Save Adjustment</button>
+            </form>
+        </div>
+    </div>
+</div>

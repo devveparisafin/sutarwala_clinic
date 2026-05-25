@@ -1,0 +1,58 @@
+@model PharmacyERP.Web.Models.Entities.MedicineBatch
+@{
+    ViewData["Title"] = "Add New Batch";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-action="Index" asp-route-medicineId="@Model.MedicineId" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to Batches
+        </a>
+    </div>
+
+    <div class="card shadow border-0 mb-4" style="max-width: 600px;">
+        <div class="card-header bg-primary text-white py-3">
+            <h6 class="m-0 font-weight-bold">Add New Batch</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="MedicineId" />
+                
+                <div class="mb-3">
+                    <label asp-for="BatchNo" class="form-label fw-bold">Batch Number</label>
+                    <input asp-for="BatchNo" class="form-control" required />
+                    <span asp-validation-for="BatchNo" class="text-danger"></span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="ExpiryDate" class="form-label fw-bold">Expiry Date</label>
+                        <input asp-for="ExpiryDate" type="date" class="form-control" required />
+                        <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="CurrentQty" class="form-label fw-bold">Initial Quantity</label>
+                        <input asp-for="CurrentQty" type="number" class="form-control" required min="0" />
+                        <span asp-validation-for="CurrentQty" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="PurchaseRate" class="form-label fw-bold">Purchase Rate</label>
+                        <input asp-for="PurchaseRate" type="number" step="0.01" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="SaleRate" class="form-label fw-bold">Sale Rate (MRP)</label>
+                        <input asp-for="SaleRate" type="number" step="0.01" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary py-2 fw-bold">Save Batch & Update Stock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

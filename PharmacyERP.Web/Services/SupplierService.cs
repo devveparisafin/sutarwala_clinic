@@ -1,0 +1,115 @@
+using PharmacyERP.Web.Interfaces;
+using PharmacyERP.Web.Models.Entities;
+using PharmacyERP.Web.Models.ViewModels;
+
+namespace PharmacyERP.Web.Services
+{
+    public interface ISupplierService : IBaseService<Supplier>
+    {
+        Task<bool> AddPaymentAsync(SupplierPayment payment);
+        Task<SupplierLedgerViewModel> GetLedgerAsync(string supplierId);
+    }
+
+    public class SupplierService : BaseService<Supplier>, ISupplierService
+    {
+        private readonly IBaseRepository<SupplierPayment> _paymentRepo;
+        private readonly IBaseRepository<PurchaseMaster> _purchaseRepo;
+
+        public SupplierService(
+            IBaseRepository<Supplier> repository,
+            IBaseRepository<SupplierPayment> paymentRepo,
+            IBaseRepository<PurchaseMaster> purchaseRepo) : base(repository)
+        {
+            _paymentRepo = paymentRepo;
+            _purchaseRepo = purchaseRepo;
+        }
+
+        public async Task<bool> AddPaymentAsync(SupplierPayment payment)
+        {
+            await _paymentRepo.CreateAsync(payment);
+            
+            var supplier = await _repository.GetByIdAsync(payment.SupplierId);
+            if (supplier != null)
+            {
+                supplier.CurrentBalance -= payment.Amount; // Reducing what we owe
+                await _repository.UpdateAsync(supplier.Id!, supplier);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<SupplierLedgerViewModel> GetLedgerAsync(string supplierId)
+        {
+            var supplier = await _repository.GetByIdAsync(supplierId);
+            if (supplier == null) return null!;
+
+            // Fetch payments and purchases
+            var allPayments = await _paymentRepo.GetAllAsync();
+            var payments = allPayments.Where(x => x.SupplierId == supplierId).ToList();
+
+            var allPurchases = await _purchaseRepo.GetAllAsync();
+            var purchases = allPurchases.Where(x => x.SupplierId == supplierId).ToList();
+
+            var model = new SupplierLedgerViewModel
+            {
+                SupplierName = supplier.Name,
+                CurrentBalance = supplier.CurrentBalance,
+                Entries = new List<LedgerEntry>()
+            };
+
+            // Add opening balance as first entry
+            decimal runningBalance = supplier.OpeningBalance;
+            model.Entries.Add(new LedgerEntry
+            {
+                Date = supplier.CreatedAt,
+                Description = "Opening Balance",
+                Credit = supplier.OpeningBalance,
+                Balance = runningBalance
+            });
+
+            var allEntries = new List<LedgerEntry>();
+
+            // Add Payments to combined list
+            foreach (var p in payments)
+            {
+                allEntries.Add(new LedgerEntry
+                {
+                    Date = p.PaymentDate,
+                    Description = $"Payment ({p.PaymentMode})",
+                    Reference = p.ReferenceNo ?? "N/A",
+                    Debit = p.Amount
+                });
+            }
+
+            // Add Purchases to combined list
+            foreach (var p in purchases)
+            {
+                allEntries.Add(new LedgerEntry
+                {
+                    Date = p.PurchaseDate,
+                    Description = "Purchase",
+                    Reference = p.InvoiceNo,
+                    Credit = p.TotalAmount,
+                    ReferenceId = p.Id // Link to purchase details
+                });
+            }
+
+            // Sort by date
+            allEntries = allEntries.OrderBy(x => x.Date).ToList();
+
+            // Calculate running balance
+            foreach (var entry in allEntries)
+            {
+                if (entry.Debit > 0)
+                    runningBalance -= entry.Debit;
+                if (entry.Credit > 0)
+                    runningBalance += entry.Credit;
+
+                entry.Balance = runningBalance;
+                model.Entries.Add(entry);
+            }
+
+            return model;
+        }
+    }
+}

@@ -1,0 +1,262 @@
+@model PharmacyERP.Web.Models.ViewModels.CustomerHistoryViewModel
+@{
+    ViewData["Title"] = "Customer History";
+}
+
+<div class="container-fluid px-4">
+    <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Customer History</h1>
+        <a asp-action="Index" class="btn btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to List
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <!-- Customer Details -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user me-2"></i>Profile Details</h6>
+                    <a asp-action="Edit" asp-route-id="@Model.Customer.Id" class="btn btn-sm btn-outline-warning" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 32px;">
+                            @Model.Customer.Name.Substring(0, 1).ToUpper()
+                        </div>
+                        <h4 class="mt-3 mb-1 fw-bold">@Model.Customer.Name</h4>
+                        <p class="text-muted">@Model.Customer.MobileNumber</p>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item px-0">
+                            <strong>Email:</strong> <span class="float-end">@(string.IsNullOrEmpty(Model.Customer.Email) ? "N/A" : Model.Customer.Email)</span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <strong>Gender:</strong> <span class="float-end">@(string.IsNullOrEmpty(Model.Customer.Gender) ? "N/A" : Model.Customer.Gender)</span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <strong>DOB:</strong> <span class="float-end">@(Model.Customer.DateOfBirth?.ToString("MMM dd, yyyy") ?? "N/A")</span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <strong>Address:</strong> <p class="mb-0 mt-1 text-muted small">@(string.IsNullOrEmpty(Model.Customer.Address) ? "N/A" : Model.Customer.Address)</p>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <strong>Medical Notes:</strong> <p class="mb-0 mt-1 text-danger small fw-bold">@(string.IsNullOrEmpty(Model.Customer.Remarks) ? "None" : Model.Customer.Remarks)</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 mb-4">
+            <!-- Purchase History -->
+            <div class="card shadow-sm border-0 rounded-3 mb-4">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-shopping-cart me-2"></i>Purchase History</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered align-middle" id="purchaseTable" width="100%" cellspacing="0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Invoice No</th>
+                                    <th>Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var sale in Model.PurchaseHistory)
+                                {
+                                    <tr>
+                                        <td class="fw-bold">@sale.InvoiceNo</td>
+                                        <td>@sale.SaleDate.ToLocalTime().ToString("MMM dd, yyyy HH:mm")</td>
+                                        <td class="text-success fw-bold">₹@sale.TotalAmount.ToString("0.00")</td>
+                                        <td>
+                                            @if(sale.Status == "Paid") { <span class="badge bg-success">Paid</span> }
+                                            else { <span class="badge bg-warning text-dark">@sale.Status</span> }
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="/Sales/Details/@sale.Id" class="btn btn-sm btn-info text-white" target="_blank" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescriptions -->
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-file-medical me-2"></i>Prescriptions</h6>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#uploadPrescriptionModal">
+                        <i class="fas fa-upload me-1"></i> Upload
+                    </button>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Prescriptions.Any())
+                    {
+                        <div class="text-center p-4 text-muted">
+                            <i class="fas fa-file-image fa-3x mb-3 text-gray-300"></i>
+                            <p>No prescriptions uploaded for this customer.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row g-3">
+                            @foreach (var doc in Model.Prescriptions)
+                            {
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="card h-100 border rounded shadow-sm position-relative">
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle" style="z-index: 10;" onclick="deletePrescription('@doc.Id')" title="Delete">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                        
+                                        @if (doc.ImagePath != null && doc.ImagePath.EndsWith(".pdf"))
+                                        {
+                                            <div class="text-center p-4 bg-light">
+                                                <i class="fas fa-file-pdf fa-4x text-danger"></i>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <img src="@doc.ImagePath" class="card-img-top" alt="Prescription" style="height: 150px; object-fit: cover; cursor: pointer;" onclick="viewImage('@doc.ImagePath')" />
+                                        }
+                                        <div class="card-body p-2 text-center">
+                                            <small class="text-muted d-block"><i class="fas fa-calendar-alt me-1"></i> @doc.PrescriptionDate.ToLocalTime().ToString("MMM dd, yyyy")</small>
+                                            @if (!string.IsNullOrEmpty(doc.DoctorName))
+                                            {
+                                                <small class="fw-bold d-block text-truncate" title="@doc.DoctorName"><i class="fas fa-user-md me-1"></i> @doc.DoctorName</small>
+                                            }
+                                            @if (doc.ImagePath != null && doc.ImagePath.EndsWith(".pdf"))
+                                            {
+                                                <a href="@doc.ImagePath" target="_blank" class="btn btn-sm btn-outline-danger mt-2 w-100">View PDF</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Prescription Modal -->
+<div class="modal fade" id="uploadPrescriptionModal" tabindex="-1" aria-labelledby="uploadPrescriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="UploadPrescription" asp-controller="Customer" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="CustomerId" value="@Model.Customer.Id" />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadPrescriptionModalLabel">Upload Prescription</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="DoctorName" class="form-label fw-bold">Doctor Name</label>
+                        <input type="text" class="form-control" id="DoctorName" name="DoctorName" placeholder="Dr. John Doe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ImageFile" class="form-label fw-bold">Select File (Image or PDF) <span class="text-danger">*</span></label>
+                        <input class="form-control" type="file" id="ImageFile" name="ImageFile" accept=".jpg,.jpeg,.png,.pdf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Remarks" class="form-label fw-bold">Remarks</label>
+                        <textarea class="form-control" id="Remarks" name="Remarks" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-upload me-1"></i> Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- View Image Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="fullImage" src="" class="img-fluid rounded" alt="Prescription Full View" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#purchaseTable').DataTable({
+                "pageLength": 5,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "order": [[1, "desc"]]
+            });
+        });
+
+        function viewImage(src) {
+            $('#fullImage').attr('src', src);
+            $('#viewImageModal').modal('show');
+        }
+
+        function deletePrescription(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This prescription will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e74a3b',
+                cancelButtonColor: '#858796',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/Customer/DeletePrescription/' + id, function (data) {
+                        if (data.success) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.message,
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,247 @@
+@model PharmacyERP.Web.Models.ViewModels.SettingsViewModel
+@{
+    ViewData["Title"] = "System Settings";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-cogs me-2"></i>System Settings</h1>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="nav flex-column nav-pills" id="settings-tabs" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active text-start py-3 border-bottom rounded-0" id="store-tab" data-bs-toggle="pill" data-bs-target="#store" type="button" role="tab">
+                            <i class="fas fa-store me-2 text-primary"></i> Store Configuration
+                        </button>
+                        <button class="nav-link text-start py-3 border-bottom rounded-0" id="gst-tab" data-bs-toggle="pill" data-bs-target="#gst" type="button" role="tab">
+                            <i class="fas fa-percentage me-2 text-info"></i> Tax & GST
+                        </button>
+                        <button class="nav-link text-start py-3 border-bottom rounded-0" id="invoice-tab" data-bs-toggle="pill" data-bs-target="#invoice" type="button" role="tab">
+                            <i class="fas fa-file-invoice me-2 text-success"></i> Invoice & Printing
+                        </button>
+                        <button class="nav-link text-start py-3 rounded-0" id="backup-tab" data-bs-toggle="pill" data-bs-target="#backup" type="button" role="tab">
+                            <i class="fas fa-database me-2 text-warning"></i> Backup & Maintenance
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form asp-action="Save" asp-controller="Settings" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="tab-content" id="settings-tabContent">
+                            <!-- Store Settings -->
+                            <div class="tab-pane fade show active" id="store" role="tabpanel">
+                                <h5 class="fw-bold mb-4 border-bottom pb-2 text-primary">Store Configuration</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label asp-for="StoreName" class="form-label fw-bold"></label>
+                                        <input asp-for="StoreName" class="form-control" />
+                                        <span asp-validation-for="StoreName" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="Phone" class="form-label fw-bold"></label>
+                                        <input asp-for="Phone" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="Email" class="form-label fw-bold"></label>
+                                        <input asp-for="Email" class="form-control" type="email" />
+                                        <span asp-validation-for="Email" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="LogoFile" class="form-label fw-bold">Store Logo</label>
+                                        <input asp-for="LogoFile" type="file" class="form-control" accept="image/*" />
+                                        @if (!string.IsNullOrEmpty(Model.LogoPath))
+                                        {
+                                            <div class="mt-2">
+                                                <img src="@Model.LogoPath" alt="Logo" class="img-thumbnail" style="max-height: 80px;" />
+                                                <small class="text-muted d-block">Current Logo</small>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="Address" class="form-label fw-bold"></label>
+                                        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- GST Settings -->
+                            <div class="tab-pane fade" id="gst" role="tabpanel">
+                                <h5 class="fw-bold mb-4 border-bottom pb-2 text-info">Tax & GST Settings</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label asp-for="DefaultGstPercentage" class="form-label fw-bold"></label>
+                                        <div class="input-group">
+                                            <input asp-for="DefaultGstPercentage" class="form-control" type="number" step="0.01" />
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                        <span asp-validation-for="DefaultGstPercentage" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="GstInNumber" class="form-label fw-bold"></label>
+                                        <input asp-for="GstInNumber" class="form-control text-uppercase" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Invoice & Printer Settings -->
+                            <div class="tab-pane fade" id="invoice" role="tabpanel">
+                                <h5 class="fw-bold mb-4 border-bottom pb-2 text-success">Invoice & Printing Options</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label asp-for="InvoicePrefix" class="form-label fw-bold"></label>
+                                        <input asp-for="InvoicePrefix" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="PaperSize" class="form-label fw-bold"></label>
+                                        <select asp-for="PaperSize" class="form-select">
+                                            <option value="58mm">Thermal 58mm</option>
+                                            <option value="80mm">Thermal 80mm</option>
+                                            <option value="A4">A4 Size</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-switch mt-4">
+                                            <input asp-for="PrintLogo" class="form-check-input" type="checkbox" role="switch">
+                                            <label asp-for="PrintLogo" class="form-check-label fw-bold"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="PrinterName" class="form-label fw-bold"></label>
+                                        <input asp-for="PrinterName" class="form-control" placeholder="E.g., EPSON TM-T82" />
+                                        <small class="text-muted">Target printer for raw thermal printing (if applicable).</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="FooterText" class="form-label fw-bold"></label>
+                                        <input asp-for="FooterText" class="form-control" placeholder="E.g., Thank you for your visit!" />
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="TermsAndConditions" class="form-label fw-bold"></label>
+                                        <textarea asp-for="TermsAndConditions" class="form-control" rows="3" placeholder="Return policy, conditions..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Backup Settings -->
+                            <div class="tab-pane fade" id="backup" role="tabpanel">
+                                <h5 class="fw-bold mb-4 border-bottom pb-2 text-warning">Database Backup & Maintenance</h5>
+                                
+                                <div class="alert alert-info border-start border-info border-4 shadow-sm mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-info-circle fa-2x me-3"></i>
+                                        <div>
+                                            <strong>Note:</strong> Automated backups require <code>mongodump</code> to be installed on the server hosting this application.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="form-check form-switch mb-2">
+                                            <input asp-for="AutoBackupEnabled" class="form-check-input" type="checkbox" role="switch">
+                                            <label asp-for="AutoBackupEnabled" class="form-check-label fw-bold"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="BackupPath" class="form-label fw-bold"></label>
+                                        <input asp-for="BackupPath" class="form-control" />
+                                        <span asp-validation-for="BackupPath" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="MongoDbConnectionString" class="form-label fw-bold"></label>
+                                        <input asp-for="MongoDbConnectionString" class="form-control" type="password" value="@Model.MongoDbConnectionString" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="DatabaseName" class="form-label fw-bold"></label>
+                                        <input asp-for="DatabaseName" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 pt-3 border-top">
+                                    <button type="button" class="btn btn-outline-warning shadow-sm" onclick="triggerBackup()">
+                                        <i class="fas fa-database me-1"></i> Trigger Manual Backup Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Button Footer -->
+                        <div class="mt-5 pt-3 border-top d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary px-5 shadow-sm rounded-pill">
+                                <i class="fas fa-save me-1"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AntiForgeryToken for AJAX -->
+<form id="antiForgeryForm">
+    @Html.AntiForgeryToken()
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function triggerBackup() {
+            Swal.fire({
+                title: 'Initiate Backup?',
+                text: "This will run mongodump on the server immediately.",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#f6c23e',
+                cancelButtonColor: '#858796',
+                confirmButtonText: 'Yes, Backup Now',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    var token = $('#antiForgeryForm input[name="__RequestVerificationToken"]').val();
+                    return $.ajax({
+                        url: '/Settings/TriggerBackup',
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token
+                        }
+                    }).catch(error => {
+                        Swal.showValidationMessage(`Request failed: ${error}`);
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (result.value.success) {
+                        Swal.fire('Success!', result.value.message, 'success');
+                    } else {
+                        Swal.fire('Failed!', result.value.message, 'error');
+                    }
+                }
+            });
+        }
+    </script>
+}

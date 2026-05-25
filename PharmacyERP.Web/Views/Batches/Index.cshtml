@@ -1,0 +1,73 @@
+@model IEnumerable<PharmacyERP.Web.Models.Entities.MedicineBatch>
+@{
+    ViewData["Title"] = "Batch Management";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-controller="Medicines" asp-action="Index" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to Medicines
+        </a>
+    </div>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-layer-group me-2"></i>Batches for @ViewBag.MedicineId</h1>
+        <a asp-action="Create" asp-route-medicineId="@ViewBag.MedicineId" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Batch
+        </a>
+    </div>
+
+    <div class="card shadow mb-4 border-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle" id="batchTable" width="100%" cellspacing="0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Batch Number</th>
+                            <th>Expiry Date</th>
+                            <th>Purchase Rate</th>
+                            <th>Sale Rate</th>
+                            <th>Current Qty</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var isExpired = item.ExpiryDate < DateTime.UtcNow;
+                            <tr>
+                                <td class="fw-bold">@item.BatchNo</td>
+                                <td class="@(isExpired ? "text-danger fw-bold" : "")">@item.ExpiryDate.ToString("MM/yyyy")</td>
+                                <td>@item.PurchaseRate.ToString("N2")</td>
+                                <td>@item.SaleRate.ToString("N2")</td>
+                                <td>@item.CurrentQty</td>
+                                <td>
+                                    @if (isExpired)
+                                    {
+                                        <span class="badge bg-danger">Expired</span>
+                                    }
+                                    else if (item.CurrentQty <= 0)
+                                    {
+                                        <span class="badge bg-warning text-dark">Out of Stock</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#batchTable').DataTable();
+        });
+    </script>
+}

@@ -1,0 +1,99 @@
+@model PharmacyERP.Web.Models.ViewModels.CustomerViewModel
+@{
+    bool isEdit = !string.IsNullOrEmpty(Model.Id);
+    ViewData["Title"] = isEdit ? "Edit Customer" : "Add Customer";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to List
+        </a>
+    </div>
+
+    <div class="card shadow border-0 col-md-8 mx-auto">
+        <div class="card-header bg-primary text-white py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fas @(isEdit ? "fa-edit" : "fa-plus") me-2"></i>@ViewData["Title"]</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="@(isEdit ? "Edit" : "Create")" method="post">
+                <input type="hidden" asp-for="Id" />
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Name" class="form-label fw-bold"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter Full Name" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="MobileNumber" class="form-label fw-bold"></label>
+                        <input asp-for="MobileNumber" class="form-control" placeholder="10-digit Mobile Number" />
+                        <span asp-validation-for="MobileNumber" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Email" class="form-label fw-bold"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Email Address (Optional)" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Gender" class="form-label fw-bold"></label>
+                        <select asp-for="Gender" class="form-select">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DateOfBirth" class="form-label fw-bold"></label>
+                    <input asp-for="DateOfBirth" type="date" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label fw-bold"></label>
+                    <textarea asp-for="Address" class="form-control" rows="2" placeholder="Full Address"></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Remarks" class="form-label fw-bold"></label>
+                    <textarea asp-for="Remarks" class="form-control" rows="2" placeholder="Any internal notes..."></textarea>
+                </div>
+
+                <hr class="my-4" />
+                <h6 class="fw-bold text-primary mb-3"><i class="fas fa-bell me-2"></i>Reminder Setup</h6>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="ReminderDate" class="form-label fw-bold"></label>
+                        <input asp-for="ReminderDate" type="date" class="form-control" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="ReminderFrequency" class="form-label fw-bold"></label>
+                        <select asp-for="ReminderFrequency" class="form-select">
+                            <option value="">No Reminder</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="ReminderNote" class="form-label fw-bold"></label>
+                        <input asp-for="ReminderNote" class="form-control" placeholder="E.g., Call for follow-up" />
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm">
+                        <i class="fas fa-save me-2"></i> @(isEdit ? "Update Customer" : "Save Customer")
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

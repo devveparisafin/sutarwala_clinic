@@ -1,0 +1,88 @@
+@model PharmacyERP.Web.Models.ViewModels.Reports.InventoryReportViewModel
+@{
+    ViewData["Title"] = "Inventory Report";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-boxes me-2"></i>Inventory Report</h1>
+
+    <!-- Filters -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body bg-light">
+            <form asp-action="Inventory" method="get" class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label class="col-form-label fw-bold">Report Type</label>
+                </div>
+                <div class="col-auto">
+                    <select name="type" class="form-select">
+                        <option value="All" selected="@(Model.ReportType == "All")">All Stock</option>
+                        <option value="LowStock" selected="@(Model.ReportType == "LowStock")">Low Stock (&lt; 20 units)</option>
+                        <option value="Expiring" selected="@(Model.ReportType == "Expiring")">Expiring Soon (&lt; 90 days)</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply Filter</button>
+                </div>
+                <div class="col-auto ms-auto">
+                    <h5 class="m-0 font-weight-bold text-success">Total Valuation: ₹@Model.TotalInventoryValue.ToString("N2")</h5>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-white py-3 border-bottom">
+            <h6 class="m-0 font-weight-bold text-primary">Stock Details</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle" id="reportTable" width="100%" cellspacing="0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Batch No</th>
+                            <th>Expiry Date</th>
+                            <th>Current Stock</th>
+                            <th>Unit Price</th>
+                            <th>Total Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.StockList)
+                        {
+                            var expiryClass = item.ExpiryDate < DateTime.UtcNow.AddDays(30) ? "text-danger fw-bold" : "";
+                            var stockClass = item.CurrentStock < 10 ? "text-danger fw-bold" : "";
+                            
+                            <tr>
+                                <td class="fw-bold">@item.MedicineName</td>
+                                <td>@item.BatchNumber</td>
+                                <td class="@expiryClass">@item.ExpiryDate.ToLocalTime().ToString("MMM dd, yyyy")</td>
+                                <td class="@stockClass">@item.CurrentStock</td>
+                                <td>₹@item.UnitPrice.ToString("N2")</td>
+                                <td class="text-success fw-bold">₹ @item.TotalValue.ToString("N2")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#reportTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    { extend: 'excelHtml5', className: 'btn btn-success btn-sm', text: '<i class="fas fa-file-excel"></i> Excel' },
+                    { extend: 'pdfHtml5', className: 'btn btn-danger btn-sm', text: '<i class="fas fa-file-pdf"></i> PDF' },
+                    { extend: 'print', className: 'btn btn-info btn-sm text-white', text: '<i class="fas fa-print"></i> Print' }
+                ],
+                "order": [[0, "asc"]],
+                "pageLength": 25
+            });
+        });
+    </script>
+}

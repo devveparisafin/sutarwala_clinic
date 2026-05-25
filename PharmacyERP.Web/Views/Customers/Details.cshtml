@@ -1,0 +1,104 @@
+@model PharmacyERP.Web.Models.ViewModels.CustomerHistoryViewModel
+@{
+    ViewData["Title"] = "Customer History";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to List
+        </a>
+    </div>
+
+    <div class="row">
+        <!-- Customer Info Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-primary text-white py-3">
+                    <h6 class="m-0 font-weight-bold"><i class="fas fa-user-circle me-2"></i>Customer Profile</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="display-4 text-primary"><i class="fas fa-user-circle"></i></div>
+                        <h4 class="font-weight-bold mt-2">@Model.Customer.Name</h4>
+                        <span class="badge bg-light text-dark border">@Model.Customer.MobileNumber</span>
+                    </div>
+                    <hr />
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Email:</strong> @(Model.Customer.Email ?? "N/A")</li>
+                        <li class="mb-2"><strong>Gender:</strong> @(Model.Customer.Gender ?? "N/A")</li>
+                        <li class="mb-2"><strong>Address:</strong> @(Model.Customer.Address ?? "N/A")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Area -->
+        <div class="col-md-8">
+            <!-- Purchase History -->
+            <div class="card shadow border-0 mb-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-shopping-bag me-2"></i>Purchase History</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Invoice #</th>
+                                    <th class="text-end">Amount</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var sale in Model.PurchaseHistory)
+                                {
+                                    <tr>
+                                        <td>@sale.SaleDate.ToShortDateString()</td>
+                                        <td>@sale.InvoiceNo</td>
+                                        <td class="text-end fw-bold">₹@sale.TotalAmount.ToString("N2")</td>
+                                        <td class="text-center">
+                                            <a asp-controller="Sales" asp-action="Receipt" asp-route-id="@sale.Id" class="btn btn-xs btn-outline-info" target="_blank">
+                                                <i class="fas fa-print"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!Model.PurchaseHistory.Any())
+                                {
+                                    <tr><td colspan="4" class="text-center text-muted py-4">No purchases found for this customer.</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescriptions -->
+            <div class="card shadow border-0">
+                <div class="card-header bg-white py-3">
+                    <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-file-prescription me-2"></i>Prescriptions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var p in Model.Prescriptions)
+                        {
+                            <div class="col-md-4 mb-3 text-center">
+                                <div class="border rounded p-2">
+                                    <img src="@p.ImagePath" class="img-fluid rounded mb-2" style="max-height: 150px;" />
+                                    <div class="small fw-bold">@p.PrescriptionDate.ToShortDateString()</div>
+                                    <div class="text-muted extra-small">Dr. @p.DoctorName</div>
+                                </div>
+                            </div>
+                        }
+                        @if (!Model.Prescriptions.Any())
+                        {
+                            <div class="col-12 text-center text-muted py-4">No prescriptions uploaded.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

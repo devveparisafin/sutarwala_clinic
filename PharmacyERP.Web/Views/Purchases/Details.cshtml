@@ -1,0 +1,87 @@
+@model PharmacyERP.Web.Models.Entities.PurchaseMaster
+@{
+    ViewData["Title"] = "Purchase Details";
+    var details = ViewBag.Details as IEnumerable<PharmacyERP.Web.Models.ViewModels.PurchaseItemViewModel>;
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="mb-4">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm shadow-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to List
+        </a>
+    </div>
+
+    <div class="card shadow border-0 mb-4">
+        <div class="card-header bg-primary text-white py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fas fa-info-circle me-2"></i>Purchase Summary - Invoice: @Model.InvoiceNo</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="text-muted small text-uppercase fw-bold">Supplier</label>
+                    <div class="h5">@ViewBag.SupplierName</div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="text-muted small text-uppercase fw-bold">Date</label>
+                    <div class="h5">@Model.PurchaseDate.ToLongDateString()</div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="text-muted small text-uppercase fw-bold">Net Total</label>
+                    <div class="h5 text-primary fw-bold">₹@Model.TotalAmount.ToString("N2")</div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="text-muted small text-uppercase fw-bold">Items</label>
+                    <div class="h5">@(details?.Count() ?? 0)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-white py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-list me-2"></i>Itemized Details</h6>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">Medicine</th>
+                            <th>Batch No</th>
+                            <th>Expiry</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">GST %</th>
+                            <th class="text-end pe-4">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (details != null)
+                        {
+                            foreach (var item in details)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="fw-bold">@item.MedicineName</div>
+                                    </td>
+                                    <td><span class="badge bg-secondary">@item.BatchNo</span></td>
+                                    <td>@item.ExpiryDate.ToString("MM/yyyy")</td>
+                                    <td class="text-end">@item.Qty</td>
+                                    <td class="text-end">₹@item.PurchaseRate.ToString("N2")</td>
+                                    <td class="text-end">@item.GST%</td>
+                                    <td class="text-end fw-bold pe-4">₹@item.TotalPrice.ToString("N2")</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot class="bg-light fw-bold">
+                        <tr>
+                            <td colspan="6" class="text-end ps-4">Grand Total:</td>
+                            <td class="text-end pe-4 text-primary h5 mb-0">₹@Model.TotalAmount.ToString("N2")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

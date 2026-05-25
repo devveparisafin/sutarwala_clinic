@@ -1,0 +1,130 @@
+@model IEnumerable<PharmacyERP.Web.Models.Entities.Supplier>
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+        <h1 class="h3 mb-0 text-gray-800">Supplier Management</h1>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Supplier
+        </a>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">All Suppliers</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="supplierTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Supplier Name</th>
+                            <th>Contact Person</th>
+                            <th>Phone</th>
+                            <th>GSTIN</th>
+                            <th>Current Balance</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.ContactPerson</td>
+                                <td>@item.Phone</td>
+                                <td>@item.GSTIN</td>
+                                <td class="@(item.CurrentBalance > 0 ? "text-danger font-weight-bold" : "text-success")">
+                                    ₹@item.CurrentBalance.ToString("N2")
+                                </td>
+                                <td>
+                                    <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                                        @(item.IsActive ? "Active" : "Inactive")
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="Ledger" asp-route-id="@item.Id" class="btn btn-info text-white" title="View Ledger">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning text-white">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button onclick="openPaymentModal('@item.Id', '@item.Name')" class="btn btn-success" title="Record Payment">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Record Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm">
+                    <input type="hidden" id="paySupplierId" name="SupplierId" />
+                    <div class="mb-3">
+                        <label class="form-label">Supplier</label>
+                        <input type="text" id="paySupplierName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <input type="number" name="Amount" class="form-control" required step="0.01" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Payment Mode</label>
+                        <select name="PaymentMode" class="form-control">
+                            <option value="Cash">Cash</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Online">Online</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Reference No</label>
+                        <input type="text" name="ReferenceNo" class="form-control" placeholder="Chq No / Transaction ID" />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Submit Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#supplierTable').DataTable();
+        });
+
+        function openPaymentModal(id, name) {
+            $('#paySupplierId').val(id);
+            $('#paySupplierName').val(name);
+            $('#paymentModal').modal('show');
+        }
+
+        $('#paymentForm').on('submit', function(e) {
+            e.preventDefault();
+            $.post('/Suppliers/AddPayment', $(this).serialize(), function(res) {
+                if(res.success) {
+                    notify.success(res.message);
+                    location.reload();
+                }
+            });
+        });
+    </script>
+}

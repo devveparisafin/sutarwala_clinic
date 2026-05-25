@@ -1,0 +1,215 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Work\\New folder\\clinic\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\medicines\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\medicines\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\reports\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\reports\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\models\\viewmodels\\reports\\inventoryreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\models\\viewmodels\\reports\\inventoryreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\services\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\services\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\purchasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\purchasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\sales\\receipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\sales\\receipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "RelativeToolTip": "PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAEcAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-24T13:03:19.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MedicinesController.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAuwEMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T12:57:02.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T15:48:03.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InventoryReportViewModel.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T18:46:54.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PurchaseService.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAAB8AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:42:07.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PurchasesController.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:41:59.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReportService.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\ReportService.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Services\\ReportService.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\ReportService.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Services\\ReportService.cs",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAuwGYAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:21:58.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAuwBoAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:24:40.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwB8AAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:21:47.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Inventory.cshtml",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "RelativeToolTip": "PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "ViewState": "AQIAADQAAAAAAAAAAAD4vz4AAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-16T17:21:34.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Receipt.cshtml",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "RelativeToolTip": "PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAAALoAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-16T14:19:14.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SalesController.cs",
+              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "RelativeToolTip": "PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAIAwwHsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T16:22:16.734Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

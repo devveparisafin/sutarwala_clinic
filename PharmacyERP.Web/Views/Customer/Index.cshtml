@@ -1,0 +1,178 @@
+@model IEnumerable<PharmacyERP.Web.Models.ViewModels.CustomerViewModel>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Customers</h1>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add Customer
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4 border-0 rounded-3">
+        <div class="card-header bg-white py-3 border-bottom d-flex align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary flex-grow-1">Customer List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle" id="customersTable" width="100%" cellspacing="0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Added On</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold">@item.Name</td>
+                                <td>@item.MobileNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.Address</td>
+                                <td>@item.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="History" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white" title="View History">
+                                            <i class="fas fa-history"></i> History
+                                        </a>
+                                        <button type="button" class="btn btn-sm @(item.ReminderDate != null ? "btn-warning text-dark" : "btn-outline-secondary")" onclick="openReminderModal('@item.Id', '@item.Name', '@(item.ReminderDate?.ToString("yyyy-MM-dd"))', '@item.ReminderFrequency', '@item.ReminderNote')" title="Set Reminder">
+                                            <i class="fas fa-bell"></i>
+                                        </button>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary text-white" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteCustomer('@item.Id')" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Set Reminder Modal -->
+<div class="modal fade" id="reminderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title"><i class="fas fa-bell me-2"></i>Set Reminder for <span id="remCustomerName" class="fw-bold"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reminderForm">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="remCustomerId" name="CustomerId" />
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Next Reminder Date</label>
+                        <input type="date" class="form-control" id="remDate" name="ReminderDate" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Frequency</label>
+                        <select class="form-select" id="remFrequency" name="ReminderFrequency">
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Reminder Note</label>
+                        <textarea class="form-control" id="remNote" name="ReminderNote" rows="2" placeholder="e.g. Monthly BP Medicines Refill"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="clearReminder()">Clear Reminder</button>
+                <button type="button" class="btn btn-warning" onclick="saveReminder()"><i class="fas fa-save me-1"></i>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#customersTable').DataTable({
+                "pageLength": 25,
+                "ordering": true,
+                "order": [[4, "desc"]]
+            });
+        });
+
+        function openReminderModal(id, name, date, freq, note) {
+            $('#remCustomerId').val(id);
+            $('#remCustomerName').text(name);
+            $('#remDate').val(date);
+            $('#remFrequency').val(freq || 'Monthly');
+            $('#remNote').val(note);
+            $('#reminderModal').modal('show');
+        }
+
+        function saveReminder() {
+            $.post('/Customer/SetReminder', $('#reminderForm').serialize(), function(data) {
+                if (data.success) {
+                    $('#reminderModal').modal('hide');
+                    Swal.fire('Success!', data.message, 'success').then(() => location.reload());
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            });
+        }
+
+        function clearReminder() {
+            $('#remDate').val('');
+            $('#remFrequency').val('');
+            $('#remNote').val('');
+            saveReminder();
+        }
+
+        function deleteCustomer(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e74a3b',
+                cancelButtonColor: '#858796',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/Customer/Delete/' + id, function (data) {
+                        if (data.success) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.message,
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

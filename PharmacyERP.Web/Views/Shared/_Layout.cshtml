@@ -1,0 +1,156 @@
+@inject PharmacyERP.Web.Interfaces.ISettingsService SettingsService
+@{
+    var settings = await SettingsService.GetSettingsAsync();
+    var logoPath = settings?.LogoPath ?? "/img/logo.jpg";
+    var storeName = settings?.StoreName ?? "PHARMACY ERP";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @storeName</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/buttons.bootstrap5.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/select2.min.css" />
+    <link rel="stylesheet" href="~/lib/select2/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PharmacyERP.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-right text-white" id="sidebar-wrapper" style="min-width: 250px; min-height: 100vh;">
+            <div class="sidebar-heading p-3 border-bottom border-secondary text-center">
+                <img src="@logoPath" alt="Logo" style="height: 60px; width: auto; background: white; padding: 5px; border-radius: 50%; margin-bottom: 10px;" />
+                <div class="fs-5 fw-bold text-white">@storeName</div>
+            </div>
+            <div class="list-group list-group-flush mt-3 px-2">
+                <a asp-controller="Dashboard" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <div class="text-muted small fw-bold text-uppercase px-3 mt-2 mb-1">Inventory Management</div>
+                <a asp-controller="MedicineCategory" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2 rounded mb-1 small ms-2">
+                    <i class="fas fa-tags me-2"></i> Medicine Category
+                </a>
+                <a asp-controller="MedicineUnit" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2 rounded mb-1 small ms-2">
+                    <i class="fas fa-balance-scale me-2"></i> Medicine Unit
+                </a>
+                <a asp-controller="Manufacturer" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2 rounded mb-1 small ms-2">
+                    <i class="fas fa-industry me-2"></i> Manufacturer
+                </a>
+                <a asp-controller="GenericMedicine" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2 rounded mb-1 small ms-2">
+                    <i class="fas fa-microscope me-2"></i> Generic Medicine
+                </a>
+                <a asp-controller="Rack" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-2 rounded mb-1 small ms-2">
+                    <i class="fas fa-th me-2"></i> Rack & Shelf
+                </a>
+                <a asp-controller="Medicines" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-pills me-2"></i> Medicines
+                </a>
+                <a asp-controller="Inventory" asp-action="StockSummary" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-boxes me-2"></i> Inventory
+                </a>
+                <a asp-controller="Suppliers" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-truck me-2"></i> Suppliers
+                </a>
+                <a asp-controller="Customers" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-users me-2"></i> Customers
+                </a>
+                <a asp-controller="Purchases" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-shopping-cart me-2"></i> Purchases
+                </a>
+                <a asp-controller="Sales" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-file-invoice me-2"></i> Sales History
+                </a>
+                <a asp-controller="Sales" asp-action="Return" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-undo-alt me-2"></i> Sale Return
+                </a>
+                <a asp-controller="Reports" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-chart-bar me-2"></i> Reports
+                </a>
+                <a asp-controller="Settings" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                    <i class="fas fa-cog me-2"></i> Settings
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Users" asp-action="Index" class="list-group-item list-group-item-action bg-dark text-white border-0 py-3 rounded mb-1">
+                        <i class="fas fa-user-shield me-2"></i> User Management
+                    </a>
+                }
+                <div class="mt-4 px-2">
+                    <a asp-controller="Sales" asp-action="Pos" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-cash-register me-2"></i> POS BILLING
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="flex-grow-1 bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm py-3 px-4 mb-4">
+                <div class="container-fluid">
+                    <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-user-circle me-1"></i> @User.Identity.Name
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item py-2" asp-controller="Account" asp-action="Profile"><i class="fas fa-user me-2 small"></i> Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item py-2 text-danger"><i class="fas fa-sign-out-alt me-2 small"></i> Logout</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid px-4">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- DataTables Export Buttons -->
+    <script src="~/lib/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/lib/datatables/buttons.bootstrap5.min.js"></script>
+    <script src="~/lib/datatables/jszip.min.js"></script>
+    <script src="~/lib/datatables/pdfmake.min.js"></script>
+    <script src="~/lib/datatables/vfs_fonts.js"></script>
+    <script src="~/lib/datatables/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables/buttons.print.min.js"></script>
+    <script src="~/lib/select2/select2.min.js"></script>
+    <script src="~/lib/chartjs/chart.umd.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggle();
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

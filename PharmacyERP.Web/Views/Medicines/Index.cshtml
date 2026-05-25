@@ -1,0 +1,113 @@
+@model IEnumerable<PharmacyERP.Web.Models.ViewModels.MedicineListViewModel>
+@{
+    ViewData["Title"] = "Medicines List";
+}
+
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+        <h1 class="h3 mb-0 text-gray-800">Medicines Master</h1>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Medicine
+        </a>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">All Medicines</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="medicineTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Medicine Name</th>
+                            <th>Generic</th>
+                            <th>Manufacturer</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Rack</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    @if (!string.IsNullOrEmpty(item.ImagePath))
+                                    {
+                                        <img src="~/uploads/medicines/@item.ImagePath" class="rounded" width="40" height="40" alt="med" />
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-pills fa-2x text-gray-300"></i>
+                                    }
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.GenericName</td>
+                                <td>@item.ManufacturerName</td>
+                                <td>
+                                    @item.CategoryName
+                                    @if (item.IsLooseSale)
+                                    {
+                                        <br/><small class="badge bg-light text-primary border">1 @item.StripName = @item.UnitsPerStrip @item.LooseUnitName</small>
+                                    }
+                                </td>
+                                <td class="@(item.StockQuantity <= 10 ? "text-danger font-weight-bold" : "")">
+                                    @item.StockQuantity     
+                                </td>
+                                <td>@item.RackName <br/><small class="text-muted">@item.RackLocation</small></td>
+                                <td>
+                                    <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                                        @(item.IsActive ? "Active" : "Inactive")
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info text-white">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button onclick="deleteMedicine('@item.Id')" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#medicineTable').DataTable({
+                "pageLength": 10,
+                "ordering": true,
+                "info": true
+            });
+        });
+
+        function deleteMedicine(id) {
+            confirmAction('Delete Medicine?', 'This will permanently remove this medicine from the master list.', function() {
+                $.ajax({
+                    url: '/Medicines/Delete/' + id,
+                    type: 'POST',
+                    success: function(response) {
+                        if (response.success) {
+                            notify.success(response.message);
+                            location.reload();
+                        } else {
+                            notify.error(response.message);
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+}

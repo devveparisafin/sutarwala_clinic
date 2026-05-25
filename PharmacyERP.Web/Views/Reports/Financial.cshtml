@@ -1,0 +1,96 @@
+@model PharmacyERP.Web.Models.ViewModels.Reports.FinancialReportViewModel
+@{
+    ViewData["Title"] = "Financial Report";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-file-invoice-dollar me-2"></i>Financial & GST Report</h1>
+
+    <!-- Filters -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body bg-light">
+            <form asp-action="Financial" method="get" class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label class="col-form-label fw-bold">Start Date</label>
+                </div>
+                <div class="col-auto">
+                    <input type="date" name="startDate" class="form-control" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="col-auto">
+                    <label class="col-form-label fw-bold">End Date</label>
+                </div>
+                <div class="col-auto">
+                    <input type="date" name="endDate" class="form-control" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply Filter</button>
+                </div>
+                <div class="col-auto ms-auto">
+                    <button type="button" class="btn btn-info text-white" onclick="window.print()"><i class="fas fa-print"></i> Print Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Profit & Loss Summary -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-primary text-white py-3">
+                    <h6 class="m-0 font-weight-bold"><i class="fas fa-chart-pie me-2"></i>Profit & Loss Summary</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush text-lg">
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Total Sales Revenue</span>
+                            <span class="text-success fw-bold">₹@Model.Summary.TotalSales.ToString("N2")</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Total Purchases (COGS equivalent)</span>
+                            <span class="text-danger fw-bold">₹@Model.Summary.TotalPurchases.ToString("N2")</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3 bg-light">
+                            <span class="fw-bold h5 mb-0">Gross Profit / (Loss)</span>
+                            <span class="h5 mb-0 fw-bold @(Model.Summary.GrossProfit >= 0 ? "text-success" : "text-danger")">
+                                ₹@Model.Summary.GrossProfit.ToString("N2")
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-muted small">
+                        <i class="fas fa-info-circle me-1"></i> Note: This represents a simple cash-flow based gross profit calculation (Total Sales minus Total Purchases) for the selected period.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GST Summary -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-info text-white py-3">
+                    <h6 class="m-0 font-weight-bold"><i class="fas fa-file-invoice me-2"></i>GST (Tax) Summary</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush text-lg">
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Output Tax (Collected on Sales)</span>
+                            <span class="text-danger fw-bold">₹@Model.Summary.OutputTax.ToString("N2")</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Input Tax (Paid on Purchases)</span>
+                            <span class="text-success fw-bold">₹@Model.Summary.InputTax.ToString("N2")</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3 bg-light">
+                            <span class="fw-bold h5 mb-0">Net GST Payable / (Refundable)</span>
+                            <span class="h5 mb-0 fw-bold @(Model.Summary.NetGstPayable > 0 ? "text-danger" : "text-success")">
+                                ₹@Model.Summary.NetGstPayable.ToString("N2")
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-muted small">
+                        <i class="fas fa-info-circle me-1"></i> Note: Net GST Payable is Output Tax minus Input Tax. A negative value indicates a refundable amount or credit carried forward.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
