@@ -116,10 +116,18 @@
             </div>
         </div>
 
-        <div class="p-4 border-top">
-            <button onclick="processSale()" class="btn btn-primary btn-lg w-100 py-3 shadow-sm" tabindex="8">
-                <i class="fas fa-check-circle me-2"></i> COMPLETE [F10]
+        <div class="p-4 border-top" id="posActionButtons">
+            <button onclick="processSale('print')" class="btn btn-primary btn-lg w-100 py-3 mb-2 shadow-sm fw-bold" id="btnSavePrint" tabindex="8">
+                <i class="fas fa-print me-2"></i> SAVE & PRINT [F10]
             </button>
+            <div class="d-flex gap-2">
+                <button onclick="processSale('new')" class="btn btn-success btn-sm w-50 py-2 shadow-sm text-white fw-bold" id="btnSaveNew">
+                    <i class="fas fa-plus me-1"></i> Save & New
+                </button>
+                <button onclick="processSale('stay')" class="btn btn-info btn-sm w-50 py-2 shadow-sm text-white fw-bold" id="btnSaveStay">
+                    <i class="fas fa-save me-1"></i> Save & Stay
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -178,6 +186,14 @@
     <script>
         const DEFAULT_GST = @ViewBag.DefaultGst;
         let cart = [];
+
+        function generateGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        let currentTransactionGuid = generateGuid();
 
         function formatMedicine(med) {
             if (!med.id) return med.text;
@@ -262,7 +278,7 @@
                     e.preventDefault();
                 }
                 if (e.which == 121) { // F10
-                    processSale();
+                    processSale('print');
                     e.preventDefault();
                 }
                 if (e.which == 27) { // Esc
@@ -520,7 +536,19 @@
             $('#lblGrandTotal').text('₹' + grandTotal.toFixed(2));
         }
 
-        function processSale() {
+        function disableActionButtons() {
+            $('#btnSavePrint').attr('disabled', true);
+            $('#btnSaveNew').attr('disabled', true);
+            $('#btnSaveStay').attr('disabled', true);
+        }
+
+        function enableActionButtons() {
+            $('#btnSavePrint').removeAttr('disabled');
+            $('#btnSaveNew').removeAttr('disabled');
+            $('#btnSaveStay').removeAttr('disabled');
+        }
+
+        function processSale(action) {
             if (cart.length === 0) {
                 toastr.error("Cart is empty!");
                 return;
@@ -534,6 +562,7 @@
                 SubTotal: parseFloat($('#lblSubTotal').text().replace('₹', '')),
                 TaxAmount: parseFloat($('#lblTax').text().replace('₹', '')),
                 TotalAmount: parseFloat($('#lblGrandTotal').text().replace('₹', '')),
+                TransactionGuid: currentTransactionGuid,
                 Items: cart.map(x => {
                     const looseRate = x.stripRate / x.unitsPerStrip;
                     const currentRate = x.isLoose ? looseRate : x.stripRate;
@@ -550,34 +579,109 @@
 
             Swal.fire({
                 title: 'Confirm Sale?',
-                text: `Total Amount: ₹${model.TotalAmount.toFixed(2)}`,
+                text: `Are you sure you want to save this sale? Total Amount: ₹${model.TotalAmount.toFixed(2)}`,
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#1cc88a',
-                cancelButtonColor: '#f6c23e',
-                confirmButtonText: 'Save & Print',
-                cancelButtonText: 'Save Only'
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, Save Sale',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
-                if (result.isDismissed && result.dismiss !== Swal.DismissReason.cancel) return;
-
-                $.ajax({
-                    url: '/Sales/Pos',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(model),
-                    success: function(res) {
-                        if (res.success) {
-                            toastr.success(res.message);
-                            if (result.isConfirmed) {
-                                window.open('/Sales/Receipt/' + res.saleId, '_blank');
-                            }
-                            setTimeout(() => location.reload(), 500);
-                        } else {
-                            toastr.error(res.message);
+                if (result.isConfirmed) {
+                    disableActionButtons();
+                    Swal.fire({
+                        title: 'Saving data, please wait...',
+                        html: '<div class="spinner-border text-primary my-3" role="status"><span class="visually-hidden">Loading...</span></div>',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading();
                         }
-                    }
-                });
+                    });
+
+                    $.ajax({
+                        url: '/Sales/Pos',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(model),
+                        success: function(res) {
+                            Swal.close();
+                            if (res.success) {
+                                toastr.success(res.message);
+                                
+                                if (action === 'print') {
+                                    window.open('/Sales/Receipt/' + res.saleId, '_blank');
+                                    resetPOSCart();
+                                } else if (action === 'new') {
+                                    resetPOSCart();
+                                } else if (action === 'stay') {
+                                    // Lock current form
+                                    $('#CustomerName').attr('readonly', true);
+                                    $('#CustomerPhone').attr('readonly', true);
+                                    $('#DiscountAmount').attr('readonly', true);
+                                    $('#PaymentMode').attr('disabled', true);
+                                    $('#medSearch').attr('disabled', true);
+                                    $('#barcodeInput').attr('disabled', true);
+                                    $('#cartItems input, #cartItems select, #cartItems button').attr('disabled', true);
+                                    $('#cartItemsMobile input, #cartItemsMobile select, #cartItemsMobile button').attr('disabled', true);
+
+                                    // Replace Action Buttons with a green "Start New Bill" button
+                                    $('#posActionButtons').html(`
+                                        <button onclick="resetPOSCart(true)" class="btn btn-success btn-lg w-100 py-3 shadow-sm fw-bold">
+                                            <i class="fas fa-plus-circle me-2"></i> START NEW BILL
+                                        </button>
+                                    `);
+                                }
+                            } else {
+                                enableActionButtons();
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function() {
+                            Swal.close();
+                            enableActionButtons();
+                            toastr.error("An error occurred while saving the sale.");
+                        }
+                    });
+                }
             });
+        }
+
+        function resetPOSCart(unlock = false) {
+            cart = [];
+            renderCart();
+            currentTransactionGuid = generateGuid();
+
+            // Clear inputs
+            $('#SelectedCustomerId').val('');
+            $('#CustomerName').val('Walk-in Customer').removeAttr('readonly');
+            $('#CustomerPhone').val('').removeAttr('readonly');
+            $('#DiscountAmount').val('0').removeAttr('readonly');
+            $('#PaymentMode').val('Cash').removeAttr('disabled');
+            $('#medSearch').val(null).trigger('change').removeAttr('disabled');
+            $('#barcodeInput').val('').removeAttr('disabled');
+
+            // Restore action buttons if they were replaced during "stay" lock
+            if (unlock) {
+                $('#posActionButtons').html(`
+                    <button onclick="processSale('print')" class="btn btn-primary btn-lg w-100 py-3 mb-2 shadow-sm fw-bold" id="btnSavePrint" tabindex="8">
+                        <i class="fas fa-print me-2"></i> SAVE & PRINT [F10]
+                    </button>
+                    <div class="d-flex gap-2">
+                        <button onclick="processSale('new')" class="btn btn-success btn-sm w-50 py-2 shadow-sm text-white fw-bold" id="btnSaveNew">
+                            <i class="fas fa-plus me-1"></i> Save & New
+                        </button>
+                        <button onclick="processSale('stay')" class="btn btn-info btn-sm w-50 py-2 shadow-sm text-white fw-bold" id="btnSaveStay">
+                            <i class="fas fa-save me-1"></i> Save & Stay
+                        </button>
+                    </div>
+                `);
+            }
+
+            // Refocus first field
+            setTimeout(() => {
+                $('#medSearch').select2('open');
+            }, 200);
         }
     </script>
 }

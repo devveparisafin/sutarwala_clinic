@@ -15,5 +15,7 @@ namespace PharmacyERP.Web.Models.Entities
         public string? PaymentMode { get; set; }
         public string? Remarks { get; set; }
         public string? CreatedBy { get; set; }
+        public string Status { get; set; } = "Active"; // Active, Returned, Partially Returned
+        public string? TransactionGuid { get; set; }
     }
 }

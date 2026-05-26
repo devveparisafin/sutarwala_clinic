@@ -58,5 +58,15 @@ namespace PharmacyERP.Web.Controllers
             if (success) return Json(new { success = true, message = "Deleted successfully" });
             return Json(new { success = false, message = "Error while deleting" });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> QuickAdd([FromBody] QuickAddManufacturerViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, message = "Invalid data entered." });
+
+            var (success, message, id) = await _service.QuickAddAsync(model);
+            return Json(new { success = success, message = message, id = id, text = model.Name.Trim() });
+        }
     }
 }

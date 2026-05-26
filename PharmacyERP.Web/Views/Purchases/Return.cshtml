@@ -1,0 +1,227 @@
+@{
+    ViewData["Title"] = "Purchase Return";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 text-primary"><i class="fas fa-undo-alt me-2"></i>Purchase Return</h4>
+    <a href="/Purchases" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-1"></i> Back to Purchases
+    </a>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row align-items-end">
+            <div class="col-md-4">
+                <label class="form-label font-weight-bold">Search Supplier Invoice No.</label>
+                <div class="input-group">
+                    <input type="text" id="invoiceNo" class="form-control" placeholder="Enter supplier invoice number..." />
+                    <button class="btn btn-primary" type="button" onclick="searchInvoice()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="returnSection" class="d-none">
+    <div class="card shadow-sm border-top border-4 border-warning">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Purchase Details: <span id="lblInvoiceNo" class="text-primary fw-bold"></span></h5>
+            <small class="text-muted">Date: <span id="lblInvoiceDate"></span></small>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0" id="returnTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Batch No</th>
+                            <th class="text-center">Purchased Qty</th>
+                            <th class="text-center">Already Returned</th>
+                            <th class="text-center">Available to Return</th>
+                            <th class="text-end">Unit Cost (₹)</th>
+                            <th class="text-center" style="width: 150px;">Return Qty</th>
+                            <th class="text-end">Total Refund (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                    <tfoot class="bg-light">
+                        <tr>
+                            <td colspan="7" class="text-end fw-bold">Estimated Total Refund:</td>
+                            <td class="text-end fw-bold text-success fs-5">₹<span id="lblTotalRefund">0.00</span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-white text-end">
+            <button class="btn btn-warning px-4 fw-bold text-dark" onclick="processReturn()">
+                <i class="fas fa-check-circle me-1"></i> Process Return
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let currentPurchaseId = '';
+        let invoiceItems = [];
+
+        function searchInvoice() {
+            const invNo = $('#invoiceNo').val().trim();
+            if (!invNo) {
+                toastr.warning('Please enter an invoice number');
+                return;
+            }
+
+            $.get('/Purchases/GetInvoiceForReturn', { invoiceNo: invNo }, function (res) {
+                if (!res.success) {
+                    toastr.error(res.message);
+                    $('#returnSection').addClass('d-none');
+                    return;
+                }
+
+                currentPurchaseId = res.purchaseId;
+                invoiceItems = res.items;
+
+                $('#lblInvoiceNo').text(res.invoiceNo);
+                $('#lblInvoiceDate').text(res.date);
+
+                const tbody = $('#returnTable tbody');
+                tbody.empty();
+
+                let hasReturnableItems = false;
+
+                res.items.forEach((item, index) => {
+                    const isReturnable = item.availableToReturn > 0;
+                    if (isReturnable) hasReturnableItems = true;
+
+                    const tr = `
+                        <tr class="${!isReturnable ? 'bg-light text-muted' : ''}">
+                            <td>${item.medicineName}</td>
+                            <td><span class="badge bg-secondary">${item.batchNo}</span></td>
+                            <td class="text-center">${item.purchasedQty}</td>
+                            <td class="text-center text-danger">${item.returnedQty}</td>
+                            <td class="text-center fw-bold">${item.availableToReturn}</td>
+                            <td class="text-end">₹${item.unitRefund.toFixed(2)}</td>
+                            <td>
+                                <input type="number" class="form-control form-control-sm text-center return-input" 
+                                    data-index="${index}" min="0" max="${item.availableToReturn}" value="0" 
+                                    onchange="calculateRefund()" onkeyup="calculateRefund()" 
+                                    ${!isReturnable ? 'disabled' : ''} />
+                            </td>
+                            <td class="text-end fw-bold return-row-total">₹0.00</td>
+                        </tr>
+                    `;
+                    tbody.append(tr);
+                });
+
+                if (!hasReturnableItems) {
+                    toastr.info("All items in this invoice have already been returned.");
+                }
+
+                $('#returnSection').removeClass('d-none');
+                calculateRefund();
+            }).fail(function () {
+                toastr.error('Error fetching invoice details');
+            });
+        }
+
+        function calculateRefund() {
+            let totalRefund = 0;
+            
+            $('.return-input').each(function () {
+                const input = $(this);
+                const index = input.data('index');
+                const item = invoiceItems[index];
+                
+                let returnQty = parseInt(input.val()) || 0;
+                
+                // Validate max
+                if (returnQty > item.availableToReturn) {
+                    returnQty = item.availableToReturn;
+                    input.val(returnQty);
+                    toastr.warning(`Maximum returnable quantity is ${item.availableToReturn}`);
+                }
+                if (returnQty < 0) {
+                    returnQty = 0;
+                    input.val(0);
+                }
+
+                const rowRefund = returnQty * item.unitRefund;
+                totalRefund += rowRefund;
+                
+                input.closest('tr').find('.return-row-total').text('₹' + rowRefund.toFixed(2));
+            });
+
+            $('#lblTotalRefund').text(totalRefund.toFixed(2));
+        }
+
+        function processReturn() {
+            const returnData = {
+                PurchaseId: currentPurchaseId,
+                InvoiceNo: $('#lblInvoiceNo').text(),
+                Items: []
+            };
+
+            let totalQty = 0;
+
+            $('.return-input').each(function () {
+                const returnQty = parseInt($(this).val()) || 0;
+                if (returnQty > 0) {
+                    const index = $(this).data('index');
+                    const item = invoiceItems[index];
+                    returnData.Items.push({
+                        PurchaseDetailId: item.purchaseDetailId,
+                        MedicineId: item.medicineId,
+                        BatchNo: item.batchNo,
+                        ReturnQty: returnQty,
+                        RefundAmount: returnQty * item.unitRefund
+                    });
+                    totalQty += returnQty;
+                }
+            });
+
+            if (totalQty === 0) {
+                toastr.warning('Please enter a return quantity for at least one item.');
+                return;
+            }
+
+            Swal.fire({
+                title: 'Confirm Purchase Return',
+                text: `Are you sure you want to return these goods to the supplier? Estimated Refund: ₹${$('#lblTotalRefund').text()}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffc107',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, Process Return',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/Purchases/ProcessReturn',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(returnData),
+                        success: function (res) {
+                            if (res.success) {
+                                Swal.fire('Success', 'Purchase return processed successfully!', 'success').then(() => {
+                                    window.location.href = '/Purchases';
+                                });
+                            } else {
+                                Swal.fire('Error', res.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error', 'An error occurred while processing the return.', 'error');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

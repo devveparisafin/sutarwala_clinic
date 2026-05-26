@@ -102,11 +102,16 @@
                 </div>
 
                 <hr />
-                <div class="d-flex justify-content-between mb-5">
+                <div class="d-flex justify-content-between mb-5 align-items-center" id="purchaseActionButtons">
                     <a asp-action="Index" class="btn btn-outline-secondary px-4">Back to List</a>
-                    <button type="button" onclick="submitPurchase()" class="btn btn-success btn-lg px-5 shadow">
-                        <i class="fas fa-save me-2"></i>SAVE PURCHASE INVOICE
-                    </button>
+                    <div class="d-flex gap-2" id="purchaseSaveButtons">
+                        <button type="button" onclick="submitPurchase('new')" class="btn btn-success btn-lg px-4 shadow fw-bold" id="btnPurchaseSaveNew">
+                            <i class="fas fa-plus me-1"></i> SAVE & NEW
+                        </button>
+                        <button type="button" onclick="submitPurchase('stay')" class="btn btn-info btn-lg px-4 shadow text-white fw-bold" id="btnPurchaseSaveStay">
+                            <i class="fas fa-save me-1"></i> SAVE & STAY
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -115,8 +120,19 @@
 
 @section Scripts {
     <script>
+        function generateGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        let currentTransactionGuid = generateGuid();
+
         $(document).ready(function() {
             $('.select2').select2({ theme: 'bootstrap-5' });
+            
+            // Initialize Quick Add for Supplier
+            QuickAddManager.init('#SupplierId', 'Supplier');
             
             setTimeout(() => {
                 $('#SupplierId').select2('open');
@@ -300,7 +316,18 @@
             return date.toISOString().split('T')[0]; // yyyy-mm-dd
         }
 
-        function submitPurchase() {
+        function disableActionButtons() {
+            $('#btnPurchaseSaveNew').attr('disabled', true);
+            $('#btnPurchaseSaveStay').attr('disabled', true);
+        }
+
+        function enableActionButtons() {
+            $('#btnPurchaseSaveNew').removeAttr('disabled');
+            $('#btnPurchaseSaveStay').removeAttr('disabled');
+        }
+
+        function submitPurchase(action) {
+            if (!action) action = 'new';
             const model = {
                 SupplierId: $('#SupplierId').val(),
                 InvoiceNo: $('#InvoiceNo').val(),
@@ -312,6 +339,7 @@
                 TaxAmount: parseFloat($('#TaxAmount').val()),
                 OtherDiscount: parseFloat($('#OtherDiscount').val()),
                 TotalAmount: parseFloat($('#TotalAmount').val()),
+                TransactionGuid: currentTransactionGuid,
                 Items: []
             };
 
@@ -361,20 +389,115 @@
                 }
             }
 
-            $.ajax({
-                url: '/Purchases/Create',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(model),
-                success: function(res) {
-                    if (res.success) {
-                        toastr.success(res.message);
-                        window.location.href = res.redirectUrl;
-                    } else {
-                        toastr.error(res.message);
-                    }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to save this purchase record? Net Total: ₹' + model.TotalAmount.toFixed(2),
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, save it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    disableActionButtons();
+                    Swal.fire({
+                        title: 'Saving data, please wait...',
+                        html: '<div class="spinner-border text-primary my-3" role="status"><span class="visually-hidden">Loading...</span></div>',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/Purchases/Create',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(model),
+                        success: function(res) {
+                            Swal.close();
+                            if (res.success) {
+                                toastr.success(res.message);
+                                
+                                if (action === 'new') {
+                                    resetPurchaseForm();
+                                } else if (action === 'stay') {
+                                    // Lock all inputs (disable selects & inputs)
+                                    $('#SupplierId').attr('disabled', true);
+                                    $('#InvoiceNo').attr('readonly', true);
+                                    $('#PurchaseDate').attr('readonly', true);
+                                    $('#PaymentMode').attr('disabled', true);
+                                    $('#Remarks').attr('readonly', true);
+                                    $('#OtherDiscount').attr('readonly', true);
+                                    
+                                    // Disable everything in table
+                                    $('#purchaseItems input, #purchaseItems select, #purchaseItems button').attr('disabled', true);
+                                    $('button[onclick="addRow()"]').attr('disabled', true);
+
+                                    // Replace action buttons with a single green "ENTER NEXT INVOICE" button
+                                    $('#purchaseSaveButtons').html(`
+                                        <button type="button" onclick="resetPurchaseForm(true)" class="btn btn-success btn-lg px-4 shadow fw-bold">
+                                            <i class="fas fa-plus-circle me-1"></i> ENTER NEXT INVOICE
+                                        </button>
+                                    `);
+                                }
+                            } else {
+                                enableActionButtons();
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function() {
+                            Swal.close();
+                            enableActionButtons();
+                            toastr.error("An error occurred while saving the purchase invoice.");
+                        }
+                    });
                 }
             });
+        }
+
+        function resetPurchaseForm(unlock = false) {
+            // Empty table body
+            $('#purchaseItems').empty();
+            // Call addRow(false) to initialize a single empty row
+            addRow(false);
+            
+            // Regenerate a brand new Transaction GUID for the next invoice!
+            currentTransactionGuid = generateGuid();
+
+            // Reset values
+            $('#InvoiceNo').val('').removeAttr('readonly');
+            $('#Remarks').val('').removeAttr('readonly');
+            $('#SubTotal').val('0.00');
+            $('#DiscountAmount').val('0.00');
+            $('#TaxAmount').val('0.00');
+            $('#OtherDiscount').val('0.00').removeAttr('readonly');
+            $('#TotalAmount').val('0.00');
+            
+            // Reset SupplierId Select2 to default (empty select)
+            $('#SupplierId').val('').trigger('change').removeAttr('disabled');
+            $('#PaymentMode').val('Credit').removeAttr('disabled');
+            $('#PurchaseDate').val(new Date().toISOString().split('T')[0]).removeAttr('readonly');
+            
+            // If unlocked, restore original buttons
+            if (unlock) {
+                $('button[onclick="addRow()"]').removeAttr('disabled');
+                $('#purchaseSaveButtons').html(`
+                    <button type="button" onclick="submitPurchase('new')" class="btn btn-success btn-lg px-4 shadow fw-bold" id="btnPurchaseSaveNew">
+                        <i class="fas fa-plus me-1"></i> SAVE & NEW
+                    </button>
+                    <button type="button" onclick="submitPurchase('stay')" class="btn btn-info btn-lg px-4 shadow text-white fw-bold" id="btnPurchaseSaveStay">
+                        <i class="fas fa-save me-1"></i> SAVE & STAY
+                    </button>
+                `);
+            }
+
+            // Automatically open Supplier dropdown
+            setTimeout(() => {
+                $('#SupplierId').select2('open');
+            }, 200);
         }
     </script>
 }

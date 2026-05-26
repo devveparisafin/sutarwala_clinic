@@ -20,5 +20,6 @@ namespace PharmacyERP.Web.Models.Entities
         
         public string? Remarks { get; set; }
         public string? CreatedBy { get; set; }
+        public string? TransactionGuid { get; set; }
     }
 }

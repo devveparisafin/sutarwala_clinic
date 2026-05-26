@@ -9,6 +9,7 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> CreateAsync(MedicineCategoryViewModel model);
         Task<bool> UpdateAsync(MedicineCategoryViewModel model);
         Task<bool> DeleteAsync(string id);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddCategoryViewModel model);
     }
 
     public interface IMedicineUnitService
@@ -18,6 +19,7 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> CreateAsync(MedicineUnitViewModel model);
         Task<bool> UpdateAsync(MedicineUnitViewModel model);
         Task<bool> DeleteAsync(string id);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddUnitViewModel model);
     }
 
     public interface IManufacturerService
@@ -27,6 +29,7 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> CreateAsync(ManufacturerViewModel model);
         Task<bool> UpdateAsync(ManufacturerViewModel model);
         Task<bool> DeleteAsync(string id);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddManufacturerViewModel model);
     }
 
     public interface IGenericMedicineService
@@ -36,6 +39,7 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> CreateAsync(GenericMedicineViewModel model);
         Task<bool> UpdateAsync(GenericMedicineViewModel model);
         Task<bool> DeleteAsync(string id);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddGenericMedicineViewModel model);
     }
 
     public interface IRackService

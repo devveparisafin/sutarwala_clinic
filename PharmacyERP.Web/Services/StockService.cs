@@ -14,6 +14,7 @@ namespace PharmacyERP.Web.Services
         Task<IEnumerable<MedicineBatch>> GetBatchesByIdsAsync(IEnumerable<string> batchIds);
         Task<IEnumerable<StockTransaction>> GetTransactionsByReferenceAsync(string referenceId);
         Task<List<DeductionResult>> DeductStockAsync(string medicineId, int totalUnits, string referenceId, string remarks, string userId, TransactionType type = TransactionType.Sale);
+        Task DeleteTransactionsByReferenceAsync(string referenceId);
     }
 
     public class DeductionResult
@@ -174,6 +175,15 @@ namespace PharmacyERP.Web.Services
         public async Task<IEnumerable<StockTransaction>> GetTransactionsByReferenceAsync(string referenceId)
         {
             return await _transactionRepo.FindAsync(x => x.ReferenceId == referenceId);
+        }
+
+        public async Task DeleteTransactionsByReferenceAsync(string referenceId)
+        {
+            var transactions = await GetTransactionsByReferenceAsync(referenceId);
+            foreach (var t in transactions)
+            {
+                await _transactionRepo.DeleteAsync(t.Id!);
+            }
         }
     }
 }

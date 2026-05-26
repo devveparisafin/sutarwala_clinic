@@ -37,9 +37,12 @@
                                 <td class="text-end">₹@item.TaxAmount.ToString("N2")</td>
                                 <td class="text-end fw-bold text-dark">₹@item.TotalAmount.ToString("N2")</td>
                                 <td class="text-center">
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white shadow-sm">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white shadow-sm me-1">
                                         <i class="fas fa-eye me-1"></i> View
                                     </a>
+                                    <button type="button" class="btn btn-sm btn-danger shadow-sm delete-purchase" data-id="@item.Id" data-invoice="@item.InvoiceNo">
+                                        <i class="fas fa-trash me-1"></i> Delete
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -58,6 +61,43 @@
                 "language": {
                     "emptyTable": "No purchases found"
                 }
+            });
+
+            $(document).on('click', '.delete-purchase', function () {
+                var id = $(this).data('id');
+                var invoice = $(this).data('invoice');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to delete purchase invoice "' + invoice + '". This will reverse the stock batches and supplier balance!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Purchases")',
+                            type: 'POST',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response.success) {
+                                    toastr.success(response.message);
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1500);
+                                } else {
+                                    Swal.fire('Error', response.message, 'error');
+                                }
+                            },
+                            error: function () {
+                                toastr.error('Failed to perform the delete operation.');
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

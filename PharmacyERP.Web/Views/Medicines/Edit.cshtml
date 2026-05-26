@@ -168,6 +168,17 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
         $(document).ready(function() {
+            // Initialize Select2 dropdowns on Edit form
+            $('.select2').select2({
+                theme: 'bootstrap-5'
+            });
+
+            // Initialize Quick Add for Masters
+            QuickAddManager.init('#GenericId', 'GenericMedicine');
+            QuickAddManager.init('#ManufacturerId', 'Manufacturer');
+            QuickAddManager.init('#CategoryId', 'MedicineCategory');
+            QuickAddManager.init('#UnitId', 'MedicineUnit');
+
             // Toggle Loose Sale Section
             $('#chkIsLooseSale').on('change', function() {
                 if ($(this).is(':checked')) {

@@ -109,5 +109,15 @@ namespace PharmacyERP.Web.Controllers
             await _supplierService.AddPaymentAsync(payment);
             return Json(new { success = true, message = "Payment recorded successfully." });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> QuickAdd([FromBody] PharmacyERP.Web.Models.ViewModels.Masters.QuickAddSupplierViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, message = "Invalid data entered." });
+
+            var (success, message, id) = await _supplierService.QuickAddAsync(model);
+            return Json(new { success = success, message = message, id = id, text = model.Name.Trim() });
+        }
     }
 }

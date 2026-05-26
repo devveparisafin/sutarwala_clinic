@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8oGwPC/pY9kDKm7rO3EDU0a+HDmdoJjdBNjM7m45TeY=",
+  "Hash": "9RW5kZK4AOFgNIDGH54wfHxyHsPpo9ibp8nHGkeGgg8=",
   "Source": "PharmacyERP.Web",
   "BasePath": "_content/PharmacyERP.Web",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\logo.jpg.jpeg"
+    },
+    {
+      "Identity": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\quick-add.js",
+      "SourceId": "PharmacyERP.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\",
+      "BasePath": "_content/PharmacyERP.Web",
+      "RelativePath": "js/quick-add.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\quick-add.js"
     },
     {
       "Identity": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\site.js",

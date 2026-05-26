@@ -48,6 +48,23 @@ namespace PharmacyERP.Web.Services
             await _repo.DeleteAsync(id);
             return true;
         }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddCategoryViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var existing = (await _repo.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Medicine category already exists", null);
+
+            var category = new MedicineCategory
+            {
+                Name = cleanedName,
+                Description = model.Description?.Trim(),
+                IsActive = true
+            };
+            await _repo.CreateAsync(category);
+            return (true, "Medicine category added successfully", category.Id);
+        }
     }
 
     public class MedicineUnitService : IMedicineUnitService
@@ -92,6 +109,22 @@ namespace PharmacyERP.Web.Services
         {
             await _repo.DeleteAsync(id);
             return true;
+        }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddUnitViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var existing = (await _repo.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Medicine unit already exists", null);
+
+            var unit = new MedicineUnit
+            {
+                Name = cleanedName,
+                IsActive = true
+            };
+            await _repo.CreateAsync(unit);
+            return (true, "Medicine unit added successfully", unit.Id);
         }
     }
 
@@ -138,6 +171,23 @@ namespace PharmacyERP.Web.Services
             await _repo.DeleteAsync(id);
             return true;
         }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddManufacturerViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var existing = (await _repo.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Manufacturer already exists", null);
+
+            var manufacturer = new Manufacturer
+            {
+                Name = cleanedName,
+                Phone = model.Phone?.Trim(),
+                IsActive = true
+            };
+            await _repo.CreateAsync(manufacturer);
+            return (true, "Manufacturer added successfully", manufacturer.Id);
+        }
     }
 
     public class GenericMedicineService : IGenericMedicineService
@@ -182,6 +232,23 @@ namespace PharmacyERP.Web.Services
         {
             await _repo.DeleteAsync(id);
             return true;
+        }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddGenericMedicineViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var existing = (await _repo.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Generic medicine already exists", null);
+
+            var generic = new GenericMedicine
+            {
+                Name = cleanedName,
+                Description = model.Description?.Trim(),
+                IsActive = true
+            };
+            await _repo.CreateAsync(generic);
+            return (true, "Generic medicine added successfully", generic.Id);
         }
     }
 

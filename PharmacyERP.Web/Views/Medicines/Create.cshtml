@@ -62,7 +62,7 @@
                             <div class="col-md-4">
                                 <label asp-for="HSNCode" class="form-label font-weight-bold"></label>
                                 <input asp-for="HSNCode" value="3004" class="form-control" tabindex="7" />
-                            </div>
+                            </div>  
                         </div>
 
                         <div class="row mb-3">
@@ -184,6 +184,12 @@
                     $('[tabindex="' + nextTab + '"]').select2('open');
                 }
             });
+
+            // Initialize Quick Add for Masters
+            QuickAddManager.init('#GenericId', 'GenericMedicine');
+            QuickAddManager.init('#ManufacturerId', 'Manufacturer');
+            QuickAddManager.init('#CategoryId', 'MedicineCategory');
+            QuickAddManager.init('#UnitId', 'MedicineUnit');
 
             // Toggle Loose Sale Section
             $('#chkIsLooseSale').on('change', function() {

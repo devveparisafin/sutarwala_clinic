@@ -2,6 +2,7 @@ using PharmacyERP.Web.Common;
 using PharmacyERP.Web.Interfaces;
 using PharmacyERP.Web.Models.Entities;
 using PharmacyERP.Web.Models.ViewModels;
+using System.Collections.Concurrent;
 
 namespace PharmacyERP.Web.Services
 {
@@ -17,6 +18,8 @@ namespace PharmacyERP.Web.Services
 
     public class SalesService : ISalesService
     {
+        private static readonly ConcurrentDictionary<string, byte> _activeSalesLocks = new();
+
         private readonly IBaseRepository<Sale> _saleRepo;
         private readonly IBaseRepository<SaleDetail> _detailRepo;
         private readonly IBaseRepository<Payment> _paymentRepo;
@@ -45,111 +48,136 @@ namespace PharmacyERP.Web.Services
 
         public async Task<string> ProcessSaleAsync(SalesEntryViewModel model, string userId)
         {
-            // 0. Handle Customer (Auto-create by Mobile Number)
-            string? customerId = null;
-            if (!string.IsNullOrEmpty(model.CustomerPhone))
+            if (string.IsNullOrEmpty(model.TransactionGuid))
             {
-                var allCustomers = await _customerRepo.GetAllAsync();
-                var customer = allCustomers.FirstOrDefault(x => x.MobileNumber == model.CustomerPhone);
-                
-                if (customer == null)
-                {
-                    customer = new Customer
-                    {
-                        Name = model.CustomerName ?? "Customer",
-                        MobileNumber = model.CustomerPhone,
-                        CreatedAt = DateTime.UtcNow
-                    };
-                    await _customerRepo.CreateAsync(customer);
-                }
-                customerId = customer.Id;
+                throw new Exception("Transaction GUID is required.");
             }
 
-            // 1. Create Sale Master
-            var sale = new Sale
+            if (!_activeSalesLocks.TryAdd(model.TransactionGuid, 0))
             {
-                InvoiceNo = $"INV-{DateTime.Now:yyyyMMddHHmmss}",
-                SaleDate = DateTime.UtcNow,
-                CustomerName = model.CustomerName ?? "Walk-in Customer",
-                CustomerPhone = model.CustomerPhone,
-                CustomerId = customerId,
-                SubTotal = model.SubTotal,
-                TaxAmount = model.TaxAmount,
-                DiscountAmount = model.DiscountAmount,
-                TotalAmount = model.TotalAmount,
-                PaymentMode = model.PaymentMode,
-                Status = model.PaymentMode == "Credit" ? "Unpaid" : "Paid",
-                CreatedBy = userId,
-                CreatedAt = DateTime.UtcNow
-            };
-            await _saleRepo.CreateAsync(sale);
-
-            // Update Customer Balance if Credit sale
-            if (model.PaymentMode == "Credit" && !string.IsNullOrEmpty(customerId))
-            {
-                var customer = await _customerRepo.GetByIdAsync(customerId);
-                if (customer != null)
-                {
-                    customer.CurrentBalance += model.TotalAmount;
-                    await _customerRepo.UpdateAsync(customer.Id!, customer);
-                }
+                throw new Exception("This sale transaction is already being processed. Please wait.");
             }
 
-            // 2. Process Items and FIFO Deduction
-            foreach (var item in model.Items)
+            try
             {
-                var medicine = await _medicineRepo.GetByIdAsync(item.MedicineId);
-                if (medicine == null) throw new Exception($"Medicine not found: {item.MedicineId}");
-
-                // Calculate total units to deduct
-                int totalUnits = item.IsLoose ? item.Qty : (item.Qty * medicine.UnitsPerStrip);
-                
-                // Deduct stock and get which batches were used
-                var deductions = await _stockService.DeductStockAsync(
-                    item.MedicineId, 
-                    totalUnits, 
-                    sale.Id!, 
-                    $"Sale Inv: {sale.InvoiceNo}", 
-                    userId);
-
-                // Create a Sale Detail record for each batch used (for accurate batch/expiry tracking)
-                foreach (var d in deductions)
+                // Check database if it has already been saved
+                var existingSales = await _saleRepo.FindAsync(x => x.TransactionGuid == model.TransactionGuid);
+                if (existingSales.Any())
                 {
-                    // Calculate pro-rated price for this batch portion
-                    decimal ratio = (decimal)d.UnitsDeducted / totalUnits;
+                    throw new Exception("This sale transaction has already been saved.");
+                }
+
+                // 0. Handle Customer (Auto-create by Mobile Number)
+                string? customerId = null;
+                if (!string.IsNullOrEmpty(model.CustomerPhone))
+                {
+                    var allCustomers = await _customerRepo.GetAllAsync();
+                    var customer = allCustomers.FirstOrDefault(x => x.MobileNumber == model.CustomerPhone);
                     
-                    var detail = new SaleDetail
+                    if (customer == null)
+                    {
+                        customer = new Customer
+                        {
+                            Name = model.CustomerName ?? "Customer",
+                            MobileNumber = model.CustomerPhone,
+                            CreatedAt = DateTime.UtcNow
+                        };
+                        await _customerRepo.CreateAsync(customer);
+                    }
+                    customerId = customer.Id;
+                }
+
+                // 1. Create Sale Master
+                var sale = new Sale
+                {
+                    InvoiceNo = $"INV-{DateTime.Now:yyyyMMddHHmmss}",
+                    SaleDate = DateTime.UtcNow,
+                    CustomerName = model.CustomerName ?? "Walk-in Customer",
+                    CustomerPhone = model.CustomerPhone,
+                    CustomerId = customerId,
+                    SubTotal = model.SubTotal,
+                    TaxAmount = model.TaxAmount,
+                    DiscountAmount = model.DiscountAmount,
+                    TotalAmount = model.TotalAmount,
+                    PaymentMode = model.PaymentMode,
+                    Status = model.PaymentMode == "Credit" ? "Unpaid" : "Paid",
+                    CreatedBy = userId,
+                    CreatedAt = DateTime.UtcNow,
+                    TransactionGuid = model.TransactionGuid
+                };
+                await _saleRepo.CreateAsync(sale);
+
+                // Update Customer Balance if Credit sale
+                if (model.PaymentMode == "Credit" && !string.IsNullOrEmpty(customerId))
+                {
+                    var customer = await _customerRepo.GetByIdAsync(customerId);
+                    if (customer != null)
+                    {
+                        customer.CurrentBalance += model.TotalAmount;
+                        await _customerRepo.UpdateAsync(customer.Id!, customer);
+                    }
+                }
+
+                // 2. Process Items and FIFO Deduction
+                foreach (var item in model.Items)
+                {
+                    var medicine = await _medicineRepo.GetByIdAsync(item.MedicineId);
+                    if (medicine == null) throw new Exception($"Medicine not found: {item.MedicineId}");
+
+                    // Calculate total units to deduct
+                    int totalUnits = item.IsLoose ? item.Qty : (item.Qty * medicine.UnitsPerStrip);
+                    
+                    // Deduct stock and get which batches were used
+                    var deductions = await _stockService.DeductStockAsync(
+                        item.MedicineId, 
+                        totalUnits, 
+                        sale.Id!, 
+                        $"Sale Inv: {sale.InvoiceNo}", 
+                        userId);
+
+                    // Create a Sale Detail record for each batch used (for accurate batch/expiry tracking)
+                    foreach (var d in deductions)
+                    {
+                        // Calculate pro-rated price for this batch portion
+                        decimal ratio = (decimal)d.UnitsDeducted / totalUnits;
+                        
+                        var detail = new SaleDetail
+                        {
+                            SaleId = sale.Id!,
+                            MedicineId = item.MedicineId,
+                            BatchId = d.BatchId,
+                            Qty = d.UnitsDeducted, // Storing units for precision in split batches
+                            IsLoose = true, // Force to loose if split, or keep as is? 
+                            Rate = item.Rate,
+                            GST = item.GST,
+                            TotalPrice = Math.Round(item.TotalPrice * ratio, 2),
+                            CreatedAt = DateTime.UtcNow
+                        };
+                        await _detailRepo.CreateAsync(detail);
+                    }
+                }
+
+                // 3. Record Payment (Skip if Credit sale)
+                if (model.PaymentMode != "Credit")
+                {
+                    var payment = new Payment
                     {
                         SaleId = sale.Id!,
-                        MedicineId = item.MedicineId,
-                        BatchId = d.BatchId,
-                        Qty = d.UnitsDeducted, // Storing units for precision in split batches
-                        IsLoose = true, // Force to loose if split, or keep as is? 
-                        Rate = item.Rate,
-                        GST = item.GST,
-                        TotalPrice = Math.Round(item.TotalPrice * ratio, 2),
+                        Amount = sale.TotalAmount,
+                        PaymentMode = model.PaymentMode,
+                        TransactionId = model.TransactionId,
+                        PaymentDate = DateTime.UtcNow,
                         CreatedAt = DateTime.UtcNow
                     };
-                    await _detailRepo.CreateAsync(detail);
+                    await _paymentRepo.CreateAsync(payment);
                 }
-            }
 
-            // 3. Record Payment (Skip if Credit sale)
-            if (model.PaymentMode != "Credit")
+                return sale.Id!;
+            }
+            finally
             {
-                var payment = new Payment
-                {
-                    SaleId = sale.Id!,
-                    Amount = sale.TotalAmount,
-                    PaymentMode = model.PaymentMode,
-                    TransactionId = model.TransactionId,
-                    PaymentDate = DateTime.UtcNow,
-                    CreatedAt = DateTime.UtcNow
-                };
-                await _paymentRepo.CreateAsync(payment);
+                _activeSalesLocks.TryRemove(model.TransactionGuid, out _);
             }
-
-            return sale.Id!;
         }
 
         public async Task<IEnumerable<Sale>> GetAllSalesAsync() => await _saleRepo.GetAllAsync();

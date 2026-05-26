@@ -23,5 +23,7 @@ namespace PharmacyERP.Web.Models.Entities
         public decimal GST { get; set; } // Percentage
         
         public decimal TotalPrice { get; set; } // ((Qty * Rate) - Discount) + Tax
+        
+        public int ReturnedQty { get; set; } = 0;
     }
 }

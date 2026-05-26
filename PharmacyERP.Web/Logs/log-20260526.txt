@@ -1,0 +1,96 @@
+2026-05-26 17:33:53.364 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 17:58:54.961 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 18:42:17.410 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 109.4525ms
+2026-05-26 18:42:19.291 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 313.423ms
+2026-05-26 18:42:19.797 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 18:42:20.272 +05:30 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-05-26 18:42:20.466 +05:30 [FTL] Application start-up failed
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in D:\Work\New folder\clinic\PharmacyERP.Web\Program.cs:line 163
+2026-05-26 18:42:33.580 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 125.6855ms
+2026-05-26 18:42:35.332 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 261.9405ms
+2026-05-26 18:42:35.964 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 18:42:36.268 +05:30 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-05-26 18:42:36.458 +05:30 [FTL] Application start-up failed
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in D:\Work\New folder\clinic\PharmacyERP.Web\Program.cs:line 163
+2026-05-26 18:43:53.274 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 300.5153ms
+2026-05-26 18:43:54.168 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 18:43:56.709 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 112.2875ms
+2026-05-26 18:44:31.361 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 150.2432ms
+2026-05-26 18:44:43.824 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 122.943ms
+2026-05-26 18:45:06.688 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 118.9938ms
+2026-05-26 18:45:38.846 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 112.1101ms
+2026-05-26 18:45:45.228 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 128.6373ms
+2026-05-26 18:45:45.753 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 266.2505ms
+2026-05-26 18:46:16.474 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 208.7015ms
+2026-05-26 18:46:20.298 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 132.5814ms
+2026-05-26 18:46:41.744 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 109.5437ms
+2026-05-26 18:46:41.971 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 210.998ms
+2026-05-26 18:46:47.526 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 102.9433ms
+2026-05-26 18:46:47.706 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 163.857ms
+2026-05-26 18:46:52.730 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 145.3359ms
+2026-05-26 18:46:52.929 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 183.6263ms
+2026-05-26 18:46:54.005 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 100.5077ms
+2026-05-26 18:47:11.883 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 131.1419ms
+2026-05-26 18:50:38.089 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 252.4117ms
+2026-05-26 18:50:41.351 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 143.5284ms
+2026-05-26 18:50:41.724 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 228.2511ms
+2026-05-26 18:50:56.808 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 108.3195ms
+2026-05-26 18:51:33.407 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 215.412ms
+2026-05-26 18:53:08.440 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 141.3257ms
+2026-05-26 18:53:08.772 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 320.0789ms
+2026-05-26 18:55:38.301 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 129.5368ms
+2026-05-26 18:55:38.554 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 240.2707ms
+2026-05-26 18:55:39.987 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 142.7659ms
+2026-05-26 18:55:40.197 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 197.0355ms

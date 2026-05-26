@@ -30,6 +30,9 @@ builder.Host.UseSerilog();
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 
+// Add Memory Caching
+builder.Services.AddMemoryCache();
+
 // 3. Register Core Services (DI)
 builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
 // Core Data Repositories

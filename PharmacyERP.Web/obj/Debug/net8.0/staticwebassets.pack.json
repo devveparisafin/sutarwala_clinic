@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\img\\logo.jpg.jpeg"
     },
     {
+      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\quick-add.js",
+      "PackagePath": "staticwebassets\\js\\quick-add.js"
+    },
+    {
       "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

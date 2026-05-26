@@ -8,6 +8,7 @@ namespace PharmacyERP.Web.Services
     {
         Task<bool> AddPaymentAsync(SupplierPayment payment);
         Task<SupplierLedgerViewModel> GetLedgerAsync(string supplierId);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(PharmacyERP.Web.Models.ViewModels.Masters.QuickAddSupplierViewModel model);
     }
 
     public class SupplierService : BaseService<Supplier>, ISupplierService
@@ -110,6 +111,41 @@ namespace PharmacyERP.Web.Services
             }
 
             return model;
+        }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(PharmacyERP.Web.Models.ViewModels.Masters.QuickAddSupplierViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var cleanedPhone = model.Phone?.Trim();
+            var cleanedEmail = model.Email?.Trim();
+
+            var existingByName = (await _repository.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existingByName != null)
+                return (false, "Supplier already exists", null);
+
+            if (!string.IsNullOrEmpty(cleanedPhone))
+            {
+                var existingByPhone = (await _repository.FindAsync(x => x.Phone == cleanedPhone && !x.IsDeleted)).FirstOrDefault();
+                if (existingByPhone != null)
+                    return (false, "Supplier with this mobile number already exists", null);
+            }
+
+            if (!string.IsNullOrEmpty(cleanedEmail))
+            {
+                var existingByEmail = (await _repository.FindAsync(x => x.Email != null && x.Email.ToLower() == cleanedEmail.ToLower() && !x.IsDeleted)).FirstOrDefault();
+                if (existingByEmail != null)
+                    return (false, "Supplier with this email already exists", null);
+            }
+
+            var supplier = new Supplier
+            {
+                Name = cleanedName,
+                Phone = cleanedPhone,
+                Email = cleanedEmail,
+                IsActive = true
+            };
+            await _repository.CreateAsync(supplier);
+            return (true, "Supplier added successfully", supplier.Id);
         }
     }
 }

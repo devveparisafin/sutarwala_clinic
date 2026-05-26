@@ -35,6 +35,7 @@ namespace PharmacyERP.Web.Models.ViewModels
 
         public string? PaymentMode { get; set; }
         public string? Remarks { get; set; }
+        public string? TransactionGuid { get; set; }
 
         public List<PurchaseItemViewModel> Items { get; set; } = new();
     }

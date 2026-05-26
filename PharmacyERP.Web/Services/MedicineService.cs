@@ -2,6 +2,7 @@ using PharmacyERP.Web.Interfaces;
 using PharmacyERP.Web.Models.Entities;
 using PharmacyERP.Web.Models.ViewModels;
 using PharmacyERP.Web.Helpers;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace PharmacyERP.Web.Services
 {
@@ -22,6 +23,8 @@ namespace PharmacyERP.Web.Services
         private readonly IBaseRepository<Rack> _rackRepo;
         private readonly IStockService _stockService;
         private readonly IWebHostEnvironment _environment;
+        private readonly IBaseRepository<MedicineBatch> _batchRepo;
+        private readonly IMemoryCache _cache;
 
         public MedicineService(
             IBaseRepository<Medicine> repository,
@@ -31,7 +34,9 @@ namespace PharmacyERP.Web.Services
             IBaseRepository<GenericMedicine> genericRepo,
             IBaseRepository<Rack> rackRepo,
             IStockService stockService,
-            IWebHostEnvironment environment) : base(repository)
+            IWebHostEnvironment environment,
+            IBaseRepository<MedicineBatch> batchRepo,
+            IMemoryCache cache) : base(repository)
         {
             _categoryRepo = categoryRepo;
             _manufacturerRepo = manufacturerRepo;
@@ -40,16 +45,43 @@ namespace PharmacyERP.Web.Services
             _rackRepo = rackRepo;
             _stockService = stockService;
             _environment = environment;
+            _batchRepo = batchRepo;
+            _cache = cache;
         }
 
         public async Task<IEnumerable<MedicineListViewModel>> GetMedicineListAsync()
         {
             var medicines = await _repository.GetAllAsync();
-            var categories = await _categoryRepo.GetAllAsync();
-            var manufacturers = await _manufacturerRepo.GetAllAsync();
-            var units = await _unitRepo.GetAllAsync();
-            var generics = await _genericRepo.GetAllAsync();
-            var racks = await _rackRepo.GetAllAsync();
+            
+            // Cache-aside static master lists (10 minutes expiration)
+            var categories = await _cache.GetOrCreateAsync("all_categories", entry => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                return _categoryRepo.GetAllAsync();
+            }) ?? new List<MedicineCategory>();
+
+            var manufacturers = await _cache.GetOrCreateAsync("all_manufacturers", entry => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                return _manufacturerRepo.GetAllAsync();
+            }) ?? new List<Manufacturer>();
+
+            var units = await _cache.GetOrCreateAsync("all_units", entry => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                return _unitRepo.GetAllAsync();
+            }) ?? new List<MedicineUnit>();
+
+            var generics = await _cache.GetOrCreateAsync("all_generics", entry => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                return _genericRepo.GetAllAsync();
+            }) ?? new List<GenericMedicine>();
+
+            var racks = await _cache.GetOrCreateAsync("all_racks", entry => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                return _rackRepo.GetAllAsync();
+            }) ?? new List<Rack>();
+
+            // Bulk fetch all active batches to avoid N+1 query loop
+            var allBatches = await _batchRepo.FindAsync(x => x.IsActive && !x.IsDeleted);
+            var stockDict = allBatches.GroupBy(x => x.MedicineId).ToDictionary(g => g.Key, g => g.Sum(x => x.CurrentQty));
 
             var list = new List<MedicineListViewModel>();
             foreach (var m in medicines)
@@ -61,7 +93,7 @@ namespace PharmacyERP.Web.Services
                     Barcode = m.Barcode,
                     RackName = racks.FirstOrDefault(r => r.Id == m.RackId)?.Name ?? "N/A",
                     RackLocation = m.RackLocation,
-                    StockQuantity = await _stockService.GetCurrentStockAsync(m.Id!),
+                    StockQuantity = stockDict.TryGetValue(m.Id!, out var qty) ? qty : 0,
                     IsActive = m.IsActive,
                     ImagePath = m.ImagePath,
                     CategoryName = categories.FirstOrDefault(c => c.Id == m.CategoryId)?.Name ?? "N/A",

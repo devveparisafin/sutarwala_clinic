@@ -62,13 +62,20 @@ namespace PharmacyERP.Web.Controllers
             if (model == null || !model.Items.Any())
                 return Json(new { success = false, message = "Invalid purchase data." });
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "System";
-            var result = await _purchaseService.ProcessPurchaseAsync(model, userId);
-            
-            if (result)
-                return Json(new { success = true, message = "Purchase recorded successfully.", redirectUrl = Url.Action("Index") });
-            
-            return Json(new { success = false, message = "Failed to process purchase." });
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "System";
+                var result = await _purchaseService.ProcessPurchaseAsync(model, userId);
+                
+                if (result)
+                    return Json(new { success = true, message = "Purchase recorded successfully.", redirectUrl = Url.Action("Index") });
+                
+                return Json(new { success = false, message = "Failed to process purchase." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -109,6 +116,82 @@ namespace PharmacyERP.Web.Controllers
             ViewBag.SupplierName = supplier?.Name ?? "N/A";
 
             return View(master);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return Json(new { success = false, message = "Invalid purchase ID." });
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "System";
+            var (success, message) = await _purchaseService.DeletePurchaseAsync(id, userId);
+
+            return Json(new { success = success, message = message });
+        }
+
+        [HttpGet]
+        public IActionResult Return()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetInvoiceForReturn(string invoiceNo)
+        {
+            if (string.IsNullOrEmpty(invoiceNo))
+                return Json(new { success = false, message = "Invoice number required" });
+
+            var purchaseObj = await _purchaseService.GetPurchaseByInvoiceAsync(invoiceNo);
+            if (purchaseObj == null)
+                return Json(new { success = false, message = "Purchase invoice not found" });
+
+            if (purchaseObj.Status == "Returned")
+                return Json(new { success = false, message = "Invoice is already fully returned" });
+
+            var details = await _purchaseService.GetPurchaseDetailsAsync(purchaseObj.Id!);
+            var medicineIds = details.Select(d => d.MedicineId).Distinct();
+            var medicines = (await _medicineRepo.FindAsync(m => medicineIds.Contains(m.Id))).ToDictionary(m => m.Id!, m => m.Name);
+
+            var resultDetails = details.Select(d => new {
+                PurchaseDetailId = d.Id,
+                MedicineId = d.MedicineId,
+                BatchNo = d.BatchNo,
+                MedicineName = medicines.ContainsKey(d.MedicineId) ? medicines[d.MedicineId] : "Unknown",
+                PurchasedQty = d.Qty,
+                ReturnedQty = d.ReturnedQty,
+                AvailableToReturn = d.Qty - d.ReturnedQty,
+                Rate = d.PurchaseRate,
+                GST = d.GST,
+                TotalPrice = d.TotalPrice,
+                UnitRefund = Math.Round(d.TotalPrice / (d.Qty == 0 ? 1 : d.Qty), 2)
+            });
+
+            return Json(new {
+                success = true,
+                purchaseId = purchaseObj.Id,
+                invoiceNo = purchaseObj.InvoiceNo,
+                date = purchaseObj.PurchaseDate.ToString("yyyy-MM-dd HH:mm"),
+                items = resultDetails
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProcessReturn([FromBody] PurchaseReturnViewModel model)
+        {
+            if (model == null || !model.Items.Any(x => x.ReturnQty > 0))
+                return Json(new { success = false, message = "No items to return." });
+
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "System";
+                await _purchaseService.ProcessPurchaseReturnAsync(model, userId);
+                return Json(new { success = true, message = "Purchase return processed successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
     }
 }
