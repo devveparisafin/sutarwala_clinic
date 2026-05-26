@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PharmacyERP.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92f701dd114a7c6cbc67891c2c6d3122f7cdb013")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03007ae9482bd29a3a7795e0338148b1a65d4015")]
 [assembly: System.Reflection.AssemblyProductAttribute("PharmacyERP.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PharmacyERP.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -156,7 +156,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapGet("/health", () => "OK");
 try
 {
     Log.Information("Starting Pharmacy ERP Web Application...");

@@ -6,6 +6,9 @@ using PharmacyERP.Web.Models.Entities;
 using PharmacyERP.Web.Models.ViewModels;
 using PharmacyERP.Web.Services;
 using System.Security.Claims;
+using System.IO;
+using System.Text;
+using System.Globalization;
 
 namespace PharmacyERP.Web.Controllers
 {
@@ -16,17 +19,32 @@ namespace PharmacyERP.Web.Controllers
         private readonly ISupplierService _supplierService;
         private readonly IMedicineService _medicineService;
         private readonly IBaseRepository<Medicine> _medicineRepo;
+        private readonly IBaseRepository<MedicineCategory> _categoryRepo;
+        private readonly IBaseRepository<Manufacturer> _manufacturerRepo;
+        private readonly IBaseRepository<MedicineUnit> _unitRepo;
+        private readonly IBaseRepository<GenericMedicine> _genericRepo;
+        private readonly IBaseRepository<Rack> _rackRepo;
 
         public PurchasesController(
             IPurchaseService purchaseService,
             ISupplierService supplierService,
             IMedicineService medicineService,
-            IBaseRepository<Medicine> medicineRepo)
+            IBaseRepository<Medicine> medicineRepo,
+            IBaseRepository<MedicineCategory> categoryRepo,
+            IBaseRepository<Manufacturer> manufacturerRepo,
+            IBaseRepository<MedicineUnit> unitRepo,
+            IBaseRepository<GenericMedicine> genericRepo,
+            IBaseRepository<Rack> rackRepo)
         {
             _purchaseService = purchaseService;
             _supplierService = supplierService;
             _medicineService = medicineService;
             _medicineRepo = medicineRepo;
+            _categoryRepo = categoryRepo;
+            _manufacturerRepo = manufacturerRepo;
+            _unitRepo = unitRepo;
+            _genericRepo = genericRepo;
+            _rackRepo = rackRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -82,7 +100,7 @@ namespace PharmacyERP.Web.Controllers
         public async Task<IActionResult> SearchMedicine(string? term)
         {
             if (string.IsNullOrEmpty(term)) return Json(new List<object>());
-            var results = await _medicineRepo.FindAsync(x => x.Name.ToLower().Contains(term.ToLower()) && x.IsActive);
+            var results = await _medicineRepo.FindAsync(x => x.Name.ToLower().Contains(term.ToLower()) && x.IsActive && !x.IsDeleted);
             return Json(results.Select(x => new { id = x.Id, text = x.Name, gst = x.GST, unitsPerStrip = x.UnitsPerStrip }));
         }
 
@@ -192,6 +210,249 @@ namespace PharmacyERP.Web.Controllers
             {
                 return Json(new { success = false, message = ex.Message });
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Import()
+        {
+            ViewBag.Suppliers = (await _supplierService.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DownloadSampleCsv()
+        {
+            var csv = "MedicineName,BatchNo,ExpiryDate,Qty,FreeQty,UnitsPerStrip,PurchaseRate,Discount,SaleRate,MRP,GST\n" +
+                      "Paracetamol 650mg,BAT123,12/26,10,1,10,15.50,0,18.00,20.00,12\n" +
+                      "Ibuprofen 400mg,BAT456,06/27,5,0,10,22.00,5,25.00,28.50,18";
+            var bytes = Encoding.UTF8.GetBytes(csv);
+            return File(bytes, "text/csv", "PurchaseImportSample.csv");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ParseImport(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Json(new { success = false, message = "Please upload a valid CSV file." });
+
+            try
+            {
+                var parsedRows = new List<CsvPurchaseRow>();
+                using (var stream = file.OpenReadStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    var headerLine = await reader.ReadLineAsync();
+                    if (string.IsNullOrEmpty(headerLine))
+                        return Json(new { success = false, message = "The CSV file is empty." });
+
+                    var headers = headerLine.Split(',').Select(h => h.Trim().ToLowerInvariant()).ToList();
+
+                    int nameIdx = headers.IndexOf("medicinename");
+                    int batchIdx = headers.IndexOf("batchno");
+                    int expiryIdx = headers.IndexOf("expirydate");
+                    int qtyIdx = headers.IndexOf("qty");
+                    int freeQtyIdx = headers.IndexOf("freeqty");
+                    int unitsIdx = headers.IndexOf("unitsperstrip");
+                    int prateIdx = headers.IndexOf("purchaserate");
+                    int discIdx = headers.IndexOf("discount");
+                    int srateIdx = headers.IndexOf("salerate");
+                    int mrpIdx = headers.IndexOf("mrp");
+                    int gstIdx = headers.IndexOf("gst");
+
+                    while (!reader.EndOfStream)
+                    {
+                        var line = await reader.ReadLineAsync();
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+
+                        var parts = line.Split(',').Select(p => p.Trim()).ToArray();
+                        if (parts.Length < headers.Count) continue;
+
+                        var row = new CsvPurchaseRow
+                        {
+                            MedicineName = nameIdx != -1 && nameIdx < parts.Length ? parts[nameIdx] : "",
+                            BatchNo = batchIdx != -1 && batchIdx < parts.Length ? parts[batchIdx] : "",
+                            ExpiryRaw = expiryIdx != -1 && expiryIdx < parts.Length ? parts[expiryIdx] : "",
+                            Qty = qtyIdx != -1 && qtyIdx < parts.Length && int.TryParse(parts[qtyIdx], out var q) ? q : 0,
+                            FreeQty = freeQtyIdx != -1 && freeQtyIdx < parts.Length && int.TryParse(parts[freeQtyIdx], out var f) ? f : 0,
+                            UnitsPerStrip = unitsIdx != -1 && unitsIdx < parts.Length && int.TryParse(parts[unitsIdx], out var u) ? u : 1,
+                            PurchaseRate = prateIdx != -1 && prateIdx < parts.Length && decimal.TryParse(parts[prateIdx], out var pr) ? pr : 0,
+                            Discount = discIdx != -1 && discIdx < parts.Length && decimal.TryParse(parts[discIdx], out var disc) ? disc : 0,
+                            SaleRate = srateIdx != -1 && srateIdx < parts.Length && decimal.TryParse(parts[srateIdx], out var sr) ? sr : 0,
+                            MRP = mrpIdx != -1 && mrpIdx < parts.Length && decimal.TryParse(parts[mrpIdx], out var mrp) ? mrp : 0,
+                            GST = gstIdx != -1 && gstIdx < parts.Length && decimal.TryParse(parts[gstIdx], out var gst) ? gst : 0
+                        };
+
+                        if (!string.IsNullOrEmpty(row.MedicineName))
+                        {
+                            parsedRows.Add(row);
+                        }
+                    }
+                }
+
+                // Check which medicines exist in the database
+                var distinctNames = parsedRows.Select(x => x.MedicineName.Trim()).Distinct().ToList();
+
+                // Fetch active, non-deleted medicines matching these names (case-insensitive)
+                var existingMedicines = await _medicineRepo.FindAsync(x => x.IsActive && !x.IsDeleted);
+                var existingDict = existingMedicines
+                    .Where(m => distinctNames.Any(n => string.Equals(m.Name, n, StringComparison.OrdinalIgnoreCase)))
+                    .ToDictionary(m => m.Name.Trim().ToLowerInvariant(), m => m);
+
+                var itemsDto = new List<ParsedPurchaseItemDto>();
+                var missingMedicines = new List<string>();
+
+                foreach (var row in parsedRows)
+                {
+                    var nameKey = row.MedicineName.Trim().ToLowerInvariant();
+                    bool exists = existingDict.TryGetValue(nameKey, out var medicine);
+
+                    var expiryDateObj = ParseExpiryDate(row.ExpiryRaw);
+
+                    var item = new ParsedPurchaseItemDto
+                    {
+                        MedicineId = exists ? medicine!.Id : null,
+                        MedicineName = row.MedicineName,
+                        BatchNo = row.BatchNo,
+                        ExpiryRaw = row.ExpiryRaw,
+                        ExpiryDate = expiryDateObj?.ToString("yyyy-MM-dd"),
+                        Qty = row.Qty,
+                        FreeQty = row.FreeQty,
+                        UnitsPerStrip = exists ? medicine!.UnitsPerStrip : row.UnitsPerStrip,
+                        PurchaseRate = row.PurchaseRate,
+                        Discount = row.Discount,
+                        SaleRate = row.SaleRate,
+                        MRP = row.MRP,
+                        GST = exists ? medicine!.GST : row.GST,
+                        Exists = exists
+                    };
+
+                    itemsDto.Add(item);
+
+                    if (!exists && !missingMedicines.Contains(row.MedicineName))
+                    {
+                        missingMedicines.Add(row.MedicineName);
+                    }
+                }
+
+                return Json(new { success = true, items = itemsDto, missingMedicines = missingMedicines });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error parsing CSV: " + ex.Message });
+            }
+        }
+
+        private DateTime? ParseExpiryDate(string raw)
+        {
+            if (string.IsNullOrWhiteSpace(raw)) return null;
+
+            if (raw.Contains('/'))
+            {
+                var parts = raw.Split('/');
+                if (parts.Length == 2 && int.TryParse(parts[0], out var m) && int.TryParse(parts[1], out var y))
+                {
+                    if (parts[1].Length == 2) y += 2000;
+                    if (m >= 1 && m <= 12)
+                    {
+                        return new DateTime(y, m, DateTime.DaysInMonth(y, m));
+                    }
+                }
+            }
+
+            if (DateTime.TryParse(raw, out var dt))
+            {
+                return dt;
+            }
+
+            return null;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetImportMasterData()
+        {
+            var categories = (await _categoryRepo.FindAsync(x => x.IsActive)).Select(x => new { id = x.Id, name = x.Name }).OrderBy(x => x.name);
+            var manufacturers = (await _manufacturerRepo.FindAsync(x => x.IsActive)).Select(x => new { id = x.Id, name = x.Name }).OrderBy(x => x.name);
+            var units = (await _unitRepo.FindAsync(x => x.IsActive)).Select(x => new { id = x.Id, name = x.Name }).OrderBy(x => x.name);
+            var generics = (await _genericRepo.FindAsync(x => x.IsActive)).Select(x => new { id = x.Id, name = x.Name }).OrderBy(x => x.name);
+            var racks = (await _rackRepo.FindAsync(x => x.IsActive)).Select(x => new { id = x.Id, name = x.Name }).OrderBy(x => x.name);
+
+            return Json(new
+            {
+                categories,
+                manufacturers,
+                units,
+                generics,
+                racks
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> QuickCreateMedicine([FromBody] QuickMedicineCreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = string.Join(" ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                return Json(new { success = false, message = errors });
+            }
+
+            try
+            {
+                var medicine = new Medicine
+                {
+                    Name = model.Name,
+                    GenericId = model.GenericId,
+                    ManufacturerId = model.ManufacturerId,
+                    CategoryId = model.CategoryId,
+                    UnitId = model.UnitId,
+                    RackId = model.RackId,
+                    GST = model.GST,
+                    UnitsPerStrip = model.UnitsPerStrip,
+                    LowStockThreshold = 10,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                await _medicineRepo.CreateAsync(medicine);
+
+                return Json(new { success = true, medicineId = medicine.Id, name = medicine.Name });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        public class CsvPurchaseRow
+        {
+            public string MedicineName { get; set; } = "";
+            public string BatchNo { get; set; } = "";
+            public string ExpiryRaw { get; set; } = "";
+            public int Qty { get; set; }
+            public int FreeQty { get; set; }
+            public int UnitsPerStrip { get; set; } = 1;
+            public decimal PurchaseRate { get; set; }
+            public decimal Discount { get; set; }
+            public decimal SaleRate { get; set; }
+            public decimal MRP { get; set; }
+            public decimal GST { get; set; }
+        }
+
+        public class ParsedPurchaseItemDto
+        {
+            public string? MedicineId { get; set; }
+            public string MedicineName { get; set; } = null!;
+            public string BatchNo { get; set; } = null!;
+            public string ExpiryRaw { get; set; } = null!;
+            public string? ExpiryDate { get; set; }
+            public int Qty { get; set; }
+            public int FreeQty { get; set; }
+            public int UnitsPerStrip { get; set; }
+            public decimal PurchaseRate { get; set; }
+            public decimal Discount { get; set; }
+            public decimal SaleRate { get; set; }
+            public decimal MRP { get; set; }
+            public decimal GST { get; set; }
+            public bool Exists { get; set; }
         }
     }
 }

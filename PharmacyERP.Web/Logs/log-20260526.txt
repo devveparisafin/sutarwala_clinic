@@ -94,3 +94,194 @@ For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?l
 2026-05-26 18:55:38.554 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 240.2707ms
 2026-05-26 18:55:39.987 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 142.7659ms
 2026-05-26 18:55:40.197 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 197.0355ms
+2026-05-26 20:09:03.764 +05:30 [WRN] SLOW QUERY DETECTED: isMaster executed in 114.0323ms
+2026-05-26 20:09:05.735 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 368.9253ms
+2026-05-26 20:09:06.280 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 20:09:19.094 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 468.6871ms
+2026-05-26 20:09:20.643 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 679.4965ms
+2026-05-26 20:09:30.116 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 423.8235ms
+2026-05-26 20:10:41.474 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 113.4476ms
+2026-05-26 20:10:43.023 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 134.1659ms
+2026-05-26 20:10:51.507 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 106.8379ms
+2026-05-26 20:10:53.255 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 104.9969ms
+2026-05-26 20:10:53.376 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 110.1754ms
+2026-05-26 20:11:03.203 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 151.5785ms
+2026-05-26 20:11:03.322 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 118.7676ms
+2026-05-26 20:11:12.187 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 105.2161ms
+2026-05-26 20:11:19.661 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 160.9007ms
+2026-05-26 20:11:20.525 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 480.0502ms
+2026-05-26 20:11:27.406 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 107.3752ms
+2026-05-26 20:11:35.163 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 101.8686ms
+2026-05-26 20:25:46.801 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 250.1935ms
+2026-05-26 20:25:46.990 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 172.5697ms
+2026-05-26 20:26:20.929 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 186.1985ms
+2026-05-26 20:26:21.084 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 148.8846ms
+2026-05-26 20:26:21.964 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 580.4335ms
+2026-05-26 20:26:24.890 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 135.9893ms
+2026-05-26 20:26:25.535 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 640.9009ms
+2026-05-26 20:32:08.292 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 815.3698ms
+2026-05-26 20:32:36.244 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 523.7736ms
+2026-05-26 20:32:36.653 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 399.0354ms
+2026-05-26 20:42:44.517 +05:30 [WRN] SLOW QUERY DETECTED: isMaster executed in 134.469ms
+2026-05-26 20:42:44.793 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 104.4508ms
+2026-05-26 20:42:44.992 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 100.723ms
+2026-05-26 20:42:47.154 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 142.2238ms
+2026-05-26 20:42:47.905 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 739.2233ms
+2026-05-26 20:43:10.783 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 119.9498ms
+2026-05-26 20:43:37.702 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 571.4331ms
+2026-05-26 20:44:08.843 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 1444.6348ms
+2026-05-26 20:44:09.012 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 153.4868ms
+2026-05-26 20:51:50.423 +05:30 [WRN] SLOW QUERY DETECTED: saslStart executed in 276.8054ms
+2026-05-26 20:51:50.643 +05:30 [WRN] SLOW QUERY DETECTED: saslContinue executed in 107.1828ms
+2026-05-26 20:51:50.835 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 120.111ms
+2026-05-26 20:51:51.304 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 348.9654ms
+2026-05-26 20:51:54.512 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 1508.6304ms
+2026-05-26 20:51:54.754 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 20:51:56.055 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 342.8236ms
+2026-05-26 20:51:56.580 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 184.4188ms
+2026-05-26 20:51:56.733 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 114.3122ms
+2026-05-26 20:51:57.409 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 274.0304ms
+2026-05-26 20:51:57.572 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 157.3957ms
+2026-05-26 20:51:58.180 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 406.2955ms
+2026-05-26 20:51:59.007 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 821.3426ms
+2026-05-26 20:51:59.168 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 146.2424ms
+2026-05-26 20:52:10.736 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 346.9561ms
+2026-05-26 20:52:11.235 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 369.8561ms
+2026-05-26 20:52:11.565 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 325.7894ms
+2026-05-26 20:52:12.679 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 952.9194ms
+2026-05-26 20:52:12.826 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 106.8208ms
+2026-05-26 20:52:37.400 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 300.8089ms
+2026-05-26 20:52:37.683 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 269.0652ms
+2026-05-26 20:53:06.975 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 416.9583ms
+2026-05-26 20:53:57.982 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 188.0149ms
+2026-05-26 20:53:58.118 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 129.2497ms
+2026-05-26 20:54:25.663 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 127.6725ms
+2026-05-26 20:54:27.161 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 398.7437ms
+2026-05-26 20:54:27.426 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 20:54:28.906 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 156.799ms
+2026-05-26 20:57:37.336 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 643.0609ms
+2026-05-26 20:57:37.636 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 282.0503ms
+2026-05-26 20:57:38.043 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 369.6405ms
+2026-05-26 20:57:40.700 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 1021.5723ms
+2026-05-26 20:57:42.138 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 1296.9366ms
+2026-05-26 20:57:42.604 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 323.1522ms
+2026-05-26 20:57:42.810 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 200.7267ms
+2026-05-26 20:57:42.931 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 106.825ms
+2026-05-26 20:57:43.126 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 184.1435ms
+2026-05-26 20:57:44.921 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 1780.0758ms
+2026-05-26 20:58:03.513 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 206.2136ms
+2026-05-26 20:58:03.639 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 118.9341ms
+2026-05-26 21:03:43.512 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 451.5207ms
+2026-05-26 21:03:43.806 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 21:03:46.722 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 174.135ms
+2026-05-26 21:03:48.283 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 117.9852ms
+2026-05-26 21:03:53.594 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 165.4112ms
+2026-05-26 21:03:53.898 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 152.4049ms
+2026-05-26 21:03:56.325 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 185.2745ms
+2026-05-26 21:03:57.311 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 503.769ms
+2026-05-26 21:04:21.547 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 144.6075ms
+2026-05-26 21:05:22.307 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 139.252ms
+2026-05-26 21:05:23.011 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 388.9161ms
+2026-05-26 21:05:45.530 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 132.6258ms
+2026-05-26 21:05:56.952 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 135.4074ms
+2026-05-26 21:06:06.906 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 380.5415ms
+2026-05-26 21:06:25.055 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 153.2802ms
+2026-05-26 21:30:24.323 +05:30 [WRN] SLOW QUERY DETECTED: isMaster executed in 124.3352ms
+2026-05-26 21:30:24.713 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 106.5731ms
+2026-05-26 21:30:26.372 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 476.0515ms
+2026-05-26 21:30:26.670 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 21:30:28.694 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 533.0033ms
+2026-05-26 21:30:28.833 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 105.917ms
+2026-05-26 21:30:28.994 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 151.4624ms
+2026-05-26 21:30:29.197 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 176.5614ms
+2026-05-26 21:30:29.528 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 119.6548ms
+2026-05-26 21:30:29.671 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 136.4414ms
+2026-05-26 21:30:29.854 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 178.3004ms
+2026-05-26 21:30:30.081 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 130.5725ms
+2026-05-26 21:30:30.198 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 112.452ms
+2026-05-26 21:30:30.927 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 144.2995ms
+2026-05-26 21:30:34.197 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 194.1264ms
+2026-05-26 21:30:34.328 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 121.7919ms
+2026-05-26 21:30:34.470 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 117.9233ms
+2026-05-26 21:30:38.747 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 422.5113ms
+2026-05-26 21:31:00.652 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 130.9173ms
+2026-05-26 21:31:51.903 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 117.9078ms
+2026-05-26 21:31:52.603 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 399.0411ms
+2026-05-26 21:32:41.613 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 124.3722ms
+2026-05-26 21:32:49.632 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 184.2217ms
+2026-05-26 22:17:56.548 +05:30 [WRN] SLOW QUERY DETECTED: saslContinue executed in 104.1776ms
+2026-05-26 22:17:57.837 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 122.8656ms
+2026-05-26 22:17:58.523 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 409.9632ms
+2026-05-26 22:17:59.142 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 22:18:01.144 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 175.127ms
+2026-05-26 22:18:01.703 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 132.2821ms
+2026-05-26 22:18:02.096 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 107.7492ms
+2026-05-26 22:22:32.309 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 105.8353ms
+2026-05-26 22:22:33.079 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 117.2394ms
+2026-05-26 22:22:33.229 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 103.4536ms
+2026-05-26 22:22:34.417 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 762.6052ms
+2026-05-26 22:22:34.691 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 22:22:35.981 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 101.6295ms
+2026-05-26 22:22:36.354 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 136.094ms
+2026-05-26 22:22:40.479 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 121.9344ms
+2026-05-26 22:22:41.442 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 135.5476ms
+2026-05-26 22:23:12.792 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 147.4915ms
+2026-05-26 22:23:13.539 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 423.0512ms
+2026-05-26 22:23:13.719 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 118.9956ms
+2026-05-26 22:23:16.231 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 108.6624ms
+2026-05-26 22:23:20.996 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 186.8726ms
+2026-05-26 22:23:21.107 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 102.5808ms
+2026-05-26 22:24:03.193 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 133.8238ms
+2026-05-26 22:24:57.239 +05:30 [ERR] Something went wrong: MongoDB.Driver.MongoConnectionException: An exception occurred while receiving a message from the server.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.<>c.<ReadBytes>b__1_0(Stream currentStream, ValueTuple`3 state)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ExecuteOperationWithTimeout[TState](Stream stream, TState state, Action`2 operation, Int32 timeoutMs, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Misc.StreamExtensionMethods.ReadBytes(Stream stream, Byte[] buffer, Int32 offset, Int32 count, Int32 timeoutMs, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.ReceiveBuffer(OperationContext operationContext)
+   --- End of inner exception stack trace ---
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.Execute[TResult](OperationContext operationContext, IRetryableWriteOperation`1 operation, RetryableWriteContext context)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.Execute[TResult](OperationContext operationContext, IRetryableWriteOperation`1 operation, IWriteBinding binding, Boolean retryRequested, Int32 maxAdaptiveRetries, Boolean enableOverloadRetargeting, IMayUseSecondaryCriteria mayUseSecondary)
+   at MongoDB.Driver.Core.Operations.CreateIndexesOperation.Execute(OperationContext operationContext, IWriteBinding binding)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperation[TResult](OperationContext operationContext, IClientSessionHandle session, IWriteOperation`1 operation, Boolean allowChannelPinning)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperation[TResult](IClientSessionHandle session, IWriteOperation`1 operation, Nullable`1 timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.MongoIndexManager.CreateMany(IClientSessionHandle session, IEnumerable`1 models, CreateManyIndexesOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.MongoIndexManager.CreateMany(IEnumerable`1 models, CreateManyIndexesOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoIndexManagerBase`1.CreateOne(CreateIndexModel`1 model, CreateOneIndexOptions options, CancellationToken cancellationToken)
+   at PharmacyERP.Web.Repositories.MedicineUnitRepository..ctor(IMongoDbContext context) in D:\Work\New folder\clinic\PharmacyERP.Web\Repositories\MasterRepositories.cs:line 21
+   at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at lambda_method196(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at PharmacyERP.Web.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in D:\Work\New folder\clinic\PharmacyERP.Web\Middleware\ExceptionMiddleware.cs:line 20
+2026-05-26 22:25:40.471 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 115.3255ms
+2026-05-26 22:25:55.781 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 114.685ms
+2026-05-26 22:26:05.197 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 346.4749ms
+2026-05-26 22:31:03.603 +05:30 [WRN] SLOW QUERY DETECTED: createIndexes executed in 106.2164ms
+2026-05-26 22:31:05.373 +05:30 [WRN] SLOW QUERY DETECTED: getMore executed in 474.4969ms
+2026-05-26 22:31:05.685 +05:30 [INF] Starting Pharmacy ERP Web Application...
+2026-05-26 22:31:07.463 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 108.698ms
+2026-05-26 22:31:11.617 +05:30 [WRN] SLOW QUERY DETECTED: find executed in 127.3461ms
