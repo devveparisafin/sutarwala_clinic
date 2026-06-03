@@ -11,18 +11,31 @@ namespace PharmacyERP.Web.Controllers
     {
         private readonly IBaseRepository<MedicineBatch> _batchRepo;
         private readonly IBaseRepository<StockTransaction> _transactionRepo;
+        private readonly IBaseRepository<Medicine> _medicineRepo;
 
-        public BatchesController(IBaseRepository<MedicineBatch> batchRepo, IBaseRepository<StockTransaction> transactionRepo)
+        public BatchesController(
+            IBaseRepository<MedicineBatch> batchRepo, 
+            IBaseRepository<StockTransaction> transactionRepo,
+            IBaseRepository<Medicine> medicineRepo)
         {
             _batchRepo = batchRepo;
             _transactionRepo = transactionRepo;
+            _medicineRepo = medicineRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index(string medicineId)
         {
-            var batches = await _batchRepo.FindAsync(x => x.MedicineId == medicineId && !x.IsDeleted);
+            var batchesTask = _batchRepo.FindAsync(x => x.MedicineId == medicineId && !x.IsDeleted);
+            var medicineTask = _medicineRepo.GetByIdAsync(medicineId);
+
+            await Task.WhenAll(batchesTask, medicineTask);
+
+            var batches = batchesTask.Result;
+            var medicine = medicineTask.Result;
+
             ViewBag.MedicineId = medicineId;
+            ViewBag.MedicineName = medicine?.Name ?? "Unknown Medicine";
             return View(batches);
         }
 

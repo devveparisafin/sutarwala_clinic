@@ -40,17 +40,28 @@ namespace PharmacyERP.Web.Controllers
             return View(list);
         }
 
+        private async Task PopulateMasterDropdownsAsync(MedicineViewModel model)
+        {
+            var categoriesTask = _categoryRepo.FindAsync(x => x.IsActive);
+            var manufacturersTask = _manufacturerRepo.FindAsync(x => x.IsActive);
+            var unitsTask = _unitRepo.FindAsync(x => x.IsActive);
+            var genericsTask = _genericRepo.FindAsync(x => x.IsActive);
+            var racksTask = _rackRepo.FindAsync(x => x.IsActive);
+
+            await Task.WhenAll(categoriesTask, manufacturersTask, unitsTask, genericsTask, racksTask);
+
+            model.Categories = categoriesTask.Result.Select(x => new SelectListItem(x.Name, x.Id));
+            model.Manufacturers = manufacturersTask.Result.Select(x => new SelectListItem(x.Name, x.Id));
+            model.Units = unitsTask.Result.Select(x => new SelectListItem(x.Name, x.Id));
+            model.Generics = genericsTask.Result.Select(x => new SelectListItem(x.Name, x.Id));
+            model.Racks = racksTask.Result.Select(x => new SelectListItem(x.Name, x.Id));
+        }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var model = new MedicineViewModel
-            {
-                Categories = (await _categoryRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id)),
-                Manufacturers = (await _manufacturerRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id)),
-                Units = (await _unitRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id)),
-                Generics = (await _genericRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id)),
-                Racks = (await _rackRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id))
-            };
+            var model = new MedicineViewModel();
+            await PopulateMasterDropdownsAsync(model);
             return View(model);
         }
 
@@ -63,14 +74,9 @@ namespace PharmacyERP.Web.Controllers
                 await _medicineService.CreateMedicineAsync(model);
                 TempData["SuccessMessage"] = "Medicine added successfully.";
                 return RedirectToAction(nameof(Create));
-                
             }
             
-            model.Categories = (await _categoryRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Manufacturers = (await _manufacturerRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Units = (await _unitRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Generics = (await _genericRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Racks = (await _rackRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
+            await PopulateMasterDropdownsAsync(model);
             return View(model);
         }
 
@@ -80,12 +86,7 @@ namespace PharmacyERP.Web.Controllers
             var model = await _medicineService.GetMedicineForEditAsync(id);
             if (model == null) return NotFound();
 
-            model.Categories = (await _categoryRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Manufacturers = (await _manufacturerRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Units = (await _unitRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Generics = (await _genericRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Racks = (await _rackRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            
+            await PopulateMasterDropdownsAsync(model);
             return View(model);
         }
 
@@ -100,11 +101,7 @@ namespace PharmacyERP.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             
-            model.Categories = (await _categoryRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Manufacturers = (await _manufacturerRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Units = (await _unitRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Generics = (await _genericRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
-            model.Racks = (await _rackRepo.FindAsync(x => x.IsActive)).Select(x => new SelectListItem(x.Name, x.Id));
+            await PopulateMasterDropdownsAsync(model);
             return View(model);
         }
 

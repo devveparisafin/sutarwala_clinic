@@ -49,5 +49,6 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> CreateAsync(RackViewModel model);
         Task<bool> UpdateAsync(RackViewModel model);
         Task<bool> DeleteAsync(string id);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddRackViewModel model);
     }
 }

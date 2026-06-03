@@ -295,5 +295,21 @@ namespace PharmacyERP.Web.Services
             await _repo.DeleteAsync(id);
             return true;
         }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(QuickAddRackViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var existing = (await _repo.FindAsync(x => x.Name.ToLower() == cleanedName.ToLower() && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Rack already exists", null);
+
+            var rack = new Rack
+            {
+                Name = cleanedName,
+                IsActive = true
+            };
+            await _repo.CreateAsync(rack);
+            return (true, "Rack added successfully", rack.Id);
+        }
     }
 }

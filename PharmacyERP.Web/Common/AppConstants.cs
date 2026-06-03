@@ -8,6 +8,7 @@ namespace PharmacyERP.Web.Common
             public const string Manager = "Manager";
             public const string Pharmacist = "Pharmacist";
             public const string Cashier = "Cashier";
+            public const string Doctor = "Doctor";
         }
 
         public static class SessionKeys

@@ -24,5 +24,6 @@ namespace PharmacyERP.Web.Interfaces
         Task<bool> AcknowledgeReminderAsync(string customerId);
         Task<bool> SetReminderAsync(string customerId, DateTime? reminderDate, string? frequency, string? note);
         Task<IEnumerable<CustomerPrescriptionViewModel>> GetCustomerPrescriptionsAsync(string customerId);
+        Task<(bool Success, string Message, string? Id)> QuickAddAsync(PharmacyERP.Web.Models.ViewModels.Masters.QuickAddCustomerViewModel model);
     }
 }

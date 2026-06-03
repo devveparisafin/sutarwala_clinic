@@ -21,5 +21,8 @@ namespace PharmacyERP.Web.Models.Entities
         public string? Remarks { get; set; }
         public string? CreatedBy { get; set; }
         public string? TransactionGuid { get; set; }
+        
+        [MongoDB.Bson.Serialization.Attributes.BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string? PrescriptionId { get; set; }
     }
 }

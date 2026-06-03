@@ -424,6 +424,9 @@
 
         $(document).ready(function() {
             $('.select2').select2({ theme: 'bootstrap-5' });
+            
+            // Initialize Quick Add for Supplier
+            QuickAddManager.init('#ImportSupplierId', 'Supplier');
 
             // Fetch Master Data for Step 2 Dropdowns
             $.getJSON('/Purchases/GetImportMasterData', function(data) {
@@ -434,7 +437,10 @@
             const zone = $('#uploadZone');
             const fileInput = $('#csvFileInput');
 
-            zone.on('click', () => fileInput.click());
+            zone.on('click', (e) => {
+                if (e.target.id === 'csvFileInput') return;
+                fileInput.click();
+            });
 
             zone.on('dragover', (e) => {
                 e.preventDefault();
@@ -627,6 +633,15 @@
                                     <div class="col-sm-3">
                                         <input type="number" class="form-control form-control-sm units-input text-center" placeholder="Packing" value="${unitsVal}" title="Units Per Strip" />
                                     </div>
+                                    <div class="col-sm-6 mt-3">
+                                        <div class="form-check form-switch pt-1">
+                                            <input class="form-check-input chk-loose-sale" type="checkbox" role="switch" id="chkLooseSale_${idx}" onchange="toggleLooseUnitName(${idx})">
+                                            <label class="form-check-label small fw-bold" for="chkLooseSale_${idx}">Support Loose Sale?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mt-3">
+                                        <input type="text" class="form-control form-control-sm loose-unit-input text-center d-none" id="looseUnitInput_${idx}" placeholder="Loose Unit Name (e.g. Tab)" title="Loose Unit Name" />
+                                    </div>
                                 </div>
                             </div>
 
@@ -662,8 +677,22 @@
                 container.append(cardHtml);
             });
 
-            // Initialize select2 on the newly generated select fields
-            $('.select2-quick').select2({ theme: 'bootstrap-5', width: '100%' });
+            // Initialize Quick Add on the newly generated select fields
+            $(`#missingMedicinesList .generic-sel`).each(function() {
+                QuickAddManager.init(this, 'GenericMedicine');
+            });
+            $(`#missingMedicinesList .category-sel`).each(function() {
+                QuickAddManager.init(this, 'MedicineCategory');
+            });
+            $(`#missingMedicinesList .manufacturer-sel`).each(function() {
+                QuickAddManager.init(this, 'Manufacturer');
+            });
+            $(`#missingMedicinesList .unit-sel`).each(function() {
+                QuickAddManager.init(this, 'MedicineUnit');
+            });
+            $(`#missingMedicinesList .rack-sel`).each(function() {
+                QuickAddManager.init(this, 'Rack');
+            });
 
             // Initialize the Map to Existing select2 AJAX searches
             missingMedicines.forEach((medName, idx) => {
@@ -773,7 +802,9 @@
                 UnitId: card.find('.unit-sel').val(),
                 RackId: card.find('.rack-sel').val() || null,
                 GST: parseFloat(card.find('.gst-input').val()) || 0,
-                UnitsPerStrip: parseInt(card.find('.units-input').val()) || 1
+                UnitsPerStrip: parseInt(card.find('.units-input').val()) || 1,
+                IsLooseSale: card.find('.chk-loose-sale').is(':checked'),
+                LooseUnitName: card.find('.loose-unit-input').val() || null
             };
 
             if (!model.GenericId) { toastr.error("Generic Name is required."); return; }
@@ -1040,6 +1071,14 @@
                     });
                 }
             });
+        }
+
+        function toggleLooseUnitName(idx) {
+            if ($(`#chkLooseSale_${idx}`).is(':checked')) {
+                $(`#looseUnitInput_${idx}`).removeClass('d-none');
+            } else {
+                $(`#looseUnitInput_${idx}`).addClass('d-none');
+            }
         }
     </script>
 }

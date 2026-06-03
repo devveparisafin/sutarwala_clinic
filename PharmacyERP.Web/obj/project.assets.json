@@ -2326,11 +2326,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
+      "projectUniqueName": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
       "projectName": "PharmacyERP.Web",
-      "projectPath": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
+      "projectPath": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\obj\\",
+      "outputPath": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

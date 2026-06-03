@@ -43,37 +43,72 @@ const QuickAddManager = {
             showPhone: false,
             showEmail: false,
             showDesc: false
+        },
+        'Rack': {
+            title: 'Rack',
+            label: 'Rack Name',
+            url: '/Rack/QuickAdd',
+            showPhone: false,
+            showEmail: false,
+            showDesc: false
+        },
+        'Customer': {
+            title: 'Customer',
+            label: 'Customer Name',
+            url: '/Sales/QuickAddCustomer',
+            showPhone: true,
+            showEmail: true,
+            showDesc: false
         }
     },
 
     // Initializer function for Select2 fields
-    init: function (selector, type) {
+    init: function (selector, type, customOptions = {}) {
+        console.log("QuickAddManager.init called for selector:", selector, "type:", type);
         const config = this.configs[type];
-        if (!config) return;
+        if (!config) {
+            console.error("QuickAddManager: No config found for type:", type);
+            return;
+        }
 
         const $element = $(selector);
+        if (!$element.length) {
+            console.warn("QuickAddManager: Selector element not found:", selector);
+            return;
+        }
         
-        // Re-initialize select2 with Quick Add capabilities
-        $element.select2({
+        // If already initialized by standard Select2, destroy it first to apply custom options
+        if ($element.hasClass("select2-hidden-accessible")) {
+            console.log("QuickAddManager: Element already initialized, destroying select2 first...");
+            $element.select2('destroy');
+        }
+        
+        const defaultOptions = {
             theme: 'bootstrap-5',
             width: '100%',
             dropdownParent: $element.closest('.modal').length ? $element.closest('.modal') : $(document.body),
             language: {
                 noResults: function (params) {
-                    if (params && params.term) {
-                        return `<button type="button" class="btn btn-sm btn-link text-primary w-100 text-start p-1 border-0 quick-add-btn" 
-                                    data-type="${type}" 
-                                    data-term="${escapeHtml(params.term)}">
-                                    <i class="fas fa-plus-circle me-1"></i> Add New "${escapeHtml(params.term)}"
-                                </button>`;
+                    const term = (params && params.term) || $('.select2-search__field').val() || '';
+                    console.log("QuickAddManager.noResults triggered. Term:", term);
+                    if (!term.trim()) {
+                        return "No results found";
                     }
-                    return "No results found";
+                    return `<button type="button" class="btn btn-sm btn-link text-primary w-100 text-start p-1 border-0 quick-add-btn" 
+                                data-type="${type}" 
+                                data-term="${escapeHtml(term)}">
+                                <i class="fas fa-plus-circle me-1"></i> Add New "${escapeHtml(term)}"
+                            </button>`;
                 }
             },
             escapeMarkup: function (markup) {
                 return markup;
             }
-        });
+        };
+
+        const finalOptions = $.extend(true, {}, defaultOptions, customOptions);
+        $element.select2(finalOptions);
+        console.log("QuickAddManager: Select2 initialized successfully with options:", finalOptions);
     },
 
     // Open Modal
@@ -213,10 +248,10 @@ function saveQuickAdd() {
                     $(activeSelectElement).trigger({
                         type: 'select2:select',
                         params: {
-                            data: {
+                            data: $.extend({
                                 id: res.id,
                                 text: res.text
-                            }
+                            }, res)
                         }
                     });
                 }

@@ -169,6 +169,7 @@ $(document).ready(function () {
 // =============================================================================
 // FEATURE 2: FORM AUTO-DRAFT (localStorage)
 // =============================================================================
+/*
 (function () {
     const DRAFT_PREFIX      = 'erpDraft_';
     const DRAFT_INTERVAL_MS = 30000;
@@ -195,7 +196,7 @@ $(document).ready(function () {
         });
         if (Object.keys(allData).length) {
             try { localStorage.setItem(draftKey, JSON.stringify({ savedAt: new Date().toISOString(), data: allData })); }
-            catch (e) { /* storage full */ }
+            catch (e) { }
         }
     }
 
@@ -212,7 +213,7 @@ $(document).ready(function () {
                     if ($el.length && !$el.val()) $el.val(fd[key]).trigger('change');
                 });
             });
-        } catch (e) { /* ignore */ }
+        } catch (e) { }
     }
 
     $(document).ready(function () {
@@ -239,13 +240,14 @@ $(document).ready(function () {
                     clearDraft();
                 }
             }
-        } catch (e) { /* ignore */ }
+        } catch (e) { }
 
         setInterval(saveDraft, DRAFT_INTERVAL_MS);
         document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveDraft(); });
         $('form').not('[data-no-draft]').on('submit', clearDraft);
     });
 })();
+*/
 
 // =============================================================================
 // FEATURE 3: LOW STOCK NOTIFICATION PANEL

@@ -1,6 +1,7 @@
 using PharmacyERP.Web.Common;
 using PharmacyERP.Web.Interfaces;
 using PharmacyERP.Web.Models.Entities;
+using MongoDB.Driver;
 
 namespace PharmacyERP.Web.Services
 {
@@ -40,13 +41,9 @@ namespace PharmacyERP.Web.Services
         {
             await _transactionRepo.CreateAsync(transaction);
             
-            // Update Batch Quantity
-            var batch = await _batchRepo.GetByIdAsync(transaction.BatchId);
-            if (batch != null)
-            {
-                batch.CurrentQty += transaction.Quantity;
-                await _batchRepo.UpdateAsync(batch.Id!, batch);
-            }
+            // Atomically update Batch Quantity directly in MongoDB (safe from concurrency race conditions)
+            var update = Builders<MedicineBatch>.Update.Inc(x => x.CurrentQty, transaction.Quantity);
+            await _batchRepo.Collection.UpdateOneAsync(x => x.Id == transaction.BatchId, update);
         }
 
         public async Task<int> GetCurrentStockAsync(string medicineId)
@@ -139,17 +136,22 @@ namespace PharmacyERP.Web.Services
 
         public async Task<IEnumerable<dynamic>> GetStockAggregationAsync()
         {
-            var batches = await _batchRepo.FindAsync(x => x.IsActive && !x.IsDeleted && x.CurrentQty > 0);
-            
-            return batches
-                .GroupBy(x => x.MedicineId)
-                .Select(g => new
-                {
-                    MedicineId = g.Key,
-                    TotalStock = g.Sum(x => x.CurrentQty),
-                    BatchCount = g.Count(),
-                    EarliestExpiry = g.Min(x => x.ExpiryDate)
-                });
+            // Execute server-side aggregation pipeline instead of downloading all batches to web memory
+            var results = await _batchRepo.Collection.Aggregate()
+                .Match(x => x.IsActive && !x.IsDeleted && x.CurrentQty > 0)
+                .Group(
+                    x => x.MedicineId,
+                    g => new
+                    {
+                        MedicineId = g.Key,
+                        TotalStock = g.Sum(x => x.CurrentQty),
+                        BatchCount = g.Count(),
+                        EarliestExpiry = g.Min(x => x.ExpiryDate)
+                    }
+                )
+                .ToListAsync();
+
+            return results.Cast<dynamic>();
         }
 
         public async Task AdjustStockAsync(InventoryAdjustment adjustment)

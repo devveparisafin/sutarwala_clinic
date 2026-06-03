@@ -25,7 +25,7 @@ namespace PharmacyERP.Web.Services
         private readonly IBaseRepository<Payment> _paymentRepo;
         private readonly IBaseRepository<MedicineBatch> _batchRepo;
         private readonly IBaseRepository<Medicine> _medicineRepo;
-        private readonly IBaseRepository<Customer> _customerRepo;
+        private readonly ICustomerRepository _customerRepo;
         private readonly IStockService _stockService;
 
         public SalesService(
@@ -34,7 +34,7 @@ namespace PharmacyERP.Web.Services
             IBaseRepository<Payment> paymentRepo,
             IBaseRepository<MedicineBatch> batchRepo,
             IBaseRepository<Medicine> medicineRepo,
-            IBaseRepository<Customer> customerRepo,
+            ICustomerRepository customerRepo,
             IStockService stockService)
         {
             _saleRepo = saleRepo;
@@ -71,8 +71,7 @@ namespace PharmacyERP.Web.Services
                 string? customerId = null;
                 if (!string.IsNullOrEmpty(model.CustomerPhone))
                 {
-                    var allCustomers = await _customerRepo.GetAllAsync();
-                    var customer = allCustomers.FirstOrDefault(x => x.MobileNumber == model.CustomerPhone);
+                    var customer = await _customerRepo.GetByMobileAsync(model.CustomerPhone);
                     
                     if (customer == null)
                     {
@@ -103,7 +102,8 @@ namespace PharmacyERP.Web.Services
                     Status = model.PaymentMode == "Credit" ? "Unpaid" : "Paid",
                     CreatedBy = userId,
                     CreatedAt = DateTime.UtcNow,
-                    TransactionGuid = model.TransactionGuid
+                    TransactionGuid = model.TransactionGuid,
+                    PrescriptionId = model.PrescriptionId
                 };
                 await _saleRepo.CreateAsync(sale);
 

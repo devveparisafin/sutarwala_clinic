@@ -1,61 +1,65 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Work\\New folder\\clinic\\",
+  "WorkspaceRootPath": "D:\\Work\\sutarwala medical\\clinic 1.4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\reports\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\views\\reports\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\reports\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\medicines\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\views\\medicines\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\medicines\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\models\\viewmodels\\reports\\inventoryreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\models\\viewmodels\\reports\\inventoryreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\models\\viewmodels\\reports\\inventoryreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\services\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\services\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\services\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\purchasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\controllers\\purchasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\purchasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\views\\sales\\receipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\views\\sales\\receipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\views\\sales\\receipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\new folder\\clinic\\pharmacyerp.web\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|d:\\work\\sutarwala medical\\clinic 1.4\\pharmacyerp.web\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100FA1ED-04FE-452A-B42D-008AE4919AFD}|PharmacyERP.Web\\PharmacyERP.Web.csproj|solutionrelative:pharmacyerp.web\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -66,15 +70,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "PharmacyERP.Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAPAAAAAAAAAAAAAAAP0AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-27T14:17:53.821Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Program.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Program.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Program.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Program.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Program.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Program.cs",
               "ViewState": "AQIAAIoAAAAAAAAAAAAAAJ4AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -83,24 +100,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Inventory.cshtml",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
               "RelativeToolTip": "PharmacyERP.Web\\Views\\Reports\\Inventory.cshtml",
               "ViewState": "AQIAADQAAAAAAAAAAAD4vz4AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-16T17:21:34.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T17:21:34.34Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
               "RelativeToolTip": "PharmacyERP.Web\\Views\\Medicines\\Create.cshtml",
               "ViewState": "AQIAADYAAAAAAAAAAAAAAEAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -108,11 +124,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MedicinesController.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\MedicinesController.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\MedicinesController.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Controllers\\MedicinesController.cs",
               "ViewState": "AQIAADcAAAAAAAAAAAAuwEMAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -120,11 +136,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
               "RelativeToolTip": "PharmacyERP.Web\\Views\\Dashboard\\Index.cshtml",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -132,11 +148,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "InventoryReportViewModel.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Models\\ViewModels\\Reports\\InventoryReportViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -144,11 +160,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "PurchaseService.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Services\\PurchaseService.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Services\\PurchaseService.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\PurchaseService.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Services\\PurchaseService.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Services\\PurchaseService.cs",
               "ViewState": "AQIAAIoAAAAAAAAAAAAAAB8AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -156,11 +172,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "PurchasesController.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\PurchasesController.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\PurchasesController.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Controllers\\PurchasesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -168,11 +184,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ReportService.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\ReportService.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Services\\ReportService.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Services\\ReportService.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Services\\ReportService.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Services\\ReportService.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Services\\ReportService.cs",
               "ViewState": "AQIAAFsAAAAAAAAAAAAuwGYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -181,11 +197,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\DashboardController.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\DashboardController.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Controllers\\DashboardController.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAuwBoAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -193,11 +209,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\appsettings.json",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\appsettings.json",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\appsettings.json",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\appsettings.json",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\appsettings.json",
               "RelativeToolTip": "PharmacyERP.Web\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -205,11 +221,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ReportsController.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\ReportsController.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\ReportsController.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Controllers\\ReportsController.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAYwB8AAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -218,11 +234,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Receipt.cshtml",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
               "RelativeToolTip": "PharmacyERP.Web\\Views\\Sales\\Receipt.cshtml",
               "ViewState": "AQIAAKsAAAAAAAAAAAAAALoAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -230,11 +246,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "SalesController.cs",
-              "DocumentMoniker": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "DocumentMoniker": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\SalesController.cs",
               "RelativeDocumentMoniker": "PharmacyERP.Web\\Controllers\\SalesController.cs",
-              "ToolTip": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\Controllers\\SalesController.cs",
+              "ToolTip": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\Controllers\\SalesController.cs",
               "RelativeToolTip": "PharmacyERP.Web\\Controllers\\SalesController.cs",
               "ViewState": "AQIAAHMAAAAAAAAAAIAwwHsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

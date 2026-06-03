@@ -9,231 +9,243 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PharmacyERP.Web
 build_property.RootNamespace = PharmacyERP.Web
-build_property.ProjectDir = D:\Work\New folder\clinic\PharmacyERP.Web\
+build_property.ProjectDir = D:\Work\sutarwala medical\clinic 1.4\PharmacyERP.Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Work\New folder\clinic\PharmacyERP.Web
+build_property.MSBuildProjectDirectory = D:\Work\sutarwala medical\clinic 1.4\PharmacyERP.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Account/ChangePassword.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Account/Login.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Account/Profile.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Batches/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Batches/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmF0Y2hlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Batches/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Batches/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmF0Y2hlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customers/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customers/Details.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customers/Edit.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customers/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customers/Ledger.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customers/Ledger.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXExlZGdlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customer/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customer/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customer/Edit.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customer/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customer/History.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customer/History.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Customer/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Dashboard/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/GenericMedicine/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/DoctorPrescription/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yUHJlc2NyaXB0aW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/DoctorPrescription/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yUHJlc2NyaXB0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/DoctorPrescription/Queue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yUHJlc2NyaXB0aW9uXFF1ZXVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/GenericMedicine/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJpY01lZGljaW5lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Home/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Home/Privacy.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Inventory/AdjustStock.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Inventory/AdjustStock.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEFkanVzdFN0b2NrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Inventory/ExpiryAlerts.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Inventory/ExpiryAlerts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEV4cGlyeUFsZXJ0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Inventory/StockSummary.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Inventory/StockSummary.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XFN0b2NrU3VtbWFyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Manufacturer/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Manufacturer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudWZhY3R1cmVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/MedicineCategory/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/MedicineCategory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVDYXRlZ29yeVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Medicines/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Medicines/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Medicines/Edit.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Medicines/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Medicines/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Medicines/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/MedicineUnit/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/MedicineUnit/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVVbml0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Purchases/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Purchases/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Purchases/Details.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Purchases/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Purchases/Import.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Purchases/Import.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEltcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Purchases/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Purchases/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Purchases/Return.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Purchases/Return.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXFJldHVybi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Rack/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Rack/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFja1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Reports/Financial.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Reports/Financial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xGaW5hbmNpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Reports/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Reports/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Reports/Inventory.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Reports/Inventory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJbnZlbnRvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Reports/Sales.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Reports/Sales.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTYWxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Sales/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Sales/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Sales/Pos.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Sales/Pos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcUG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Sales/Receipt.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Sales/Receipt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcUmVjZWlwdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Sales/Return.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Sales/Return.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcUmV0dXJuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Sales/RevisedReceipt.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Sales/RevisedReceipt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcUmV2aXNlZFJlY2VpcHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Settings/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Settings/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2V0dGluZ3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Shared/Error.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Shared/_QuickAddModal.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Shared/_QuickAddModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9RdWlja0FkZE1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Suppliers/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Suppliers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcGxpZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Suppliers/Edit.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Suppliers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcGxpZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Suppliers/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Suppliers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcGxpZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Suppliers/Ledger.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Suppliers/Ledger.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwcGxpZXJzXExlZGdlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Users/Create.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Users/Index.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/_ViewImports.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/_ViewStart.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Work/New folder/clinic/PharmacyERP.Web/Views/Shared/_Layout.cshtml]
+[D:/Work/sutarwala medical/clinic 1.4/PharmacyERP.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-m0njoi5l71

@@ -18,6 +18,7 @@ namespace PharmacyERP.Web.Controllers
         private readonly IBaseRepository<Rack> _rackRepo;
         private readonly ICustomerService _customerService;
         private readonly ISettingsService _settingsService;
+        private readonly IBaseRepository<DoctorPrescription> _prescriptionRepo;
 
         public SalesController(
             ISalesService salesService,
@@ -26,7 +27,8 @@ namespace PharmacyERP.Web.Controllers
             IBaseRepository<Medicine> medicineRepo,
             IBaseRepository<Rack> rackRepo,
             ICustomerService customerService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IBaseRepository<DoctorPrescription> prescriptionRepo)
         {
             _salesService = salesService;
             _medicineService = medicineService;
@@ -35,6 +37,7 @@ namespace PharmacyERP.Web.Controllers
             _rackRepo = rackRepo;
             _customerService = customerService;
             _settingsService = settingsService;
+            _prescriptionRepo = prescriptionRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -44,10 +47,11 @@ namespace PharmacyERP.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Pos()
+        public async Task<IActionResult> Pos(string? prescriptionId)
         {
             var settings = await _settingsService.GetSettingsAsync();
             ViewBag.DefaultGst = settings?.DefaultGstPercentage ?? 18m;
+            ViewBag.PrescriptionId = prescriptionId;
             return View(new SalesEntryViewModel());
         }
 
@@ -61,6 +65,19 @@ namespace PharmacyERP.Web.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "System";
                 var saleId = await _salesService.ProcessSaleAsync(model, userId);
+
+                // If this sale was converted from a Doctor Prescription, mark it as Dispensed
+                if (!string.IsNullOrEmpty(model.PrescriptionId))
+                {
+                    var prescription = await _prescriptionRepo.GetByIdAsync(model.PrescriptionId);
+                    if (prescription != null)
+                    {
+                        prescription.Status = "Dispensed";
+                        prescription.SaleId = saleId;
+                        await _prescriptionRepo.UpdateAsync(prescription.Id!, prescription);
+                    }
+                }
+
                 return Json(new { success = true, message = "Sale completed successfully.", saleId });
             }
             catch (Exception ex)
@@ -228,6 +245,24 @@ namespace PharmacyERP.Web.Controllers
             {
                 return Json(new { success = false, message = ex.Message });
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> QuickAddCustomer([FromBody] PharmacyERP.Web.Models.ViewModels.Masters.QuickAddCustomerViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, message = "Invalid data entered." });
+
+            var (success, message, id) = await _customerService.QuickAddAsync(model);
+            return Json(new
+            {
+                success = success,
+                message = message,
+                id = id,
+                text = $"{model.Name.Trim()} ({model.Phone.Trim()})",
+                name = model.Name.Trim(),
+                phone = model.Phone.Trim()
+            });
         }
     }
 }

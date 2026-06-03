@@ -1,0 +1,139 @@
+@model IEnumerable<PharmacyERP.Web.Models.Entities.DoctorPrescription>
+@{
+    ViewData["Title"] = "My Prescriptions";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-file-medical me-2 text-primary"></i>My Prescriptions</h1>
+        <a asp-action="Create" class="btn btn-primary shadow-sm py-2 px-4 fw-bold">
+            <i class="fas fa-plus fa-sm text-white-50 me-2"></i> New Prescription
+        </a>
+    </div>
+
+    <div class="card shadow border-0 rounded-3 mb-4">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="prescriptionTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Patient Name</th>
+                            <th>Patient Phone</th>
+                            <th>Medicines Prescribed</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                string badgeClass = item.Status switch
+                                {
+                                    "Pending" => "bg-warning text-dark",
+                                    "Dispensed" => "bg-success text-white",
+                                    "Cancelled" => "bg-danger text-white",
+                                    _ => "bg-secondary text-white"
+                                };
+
+                                <tr>
+                                    <td>@item.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                                    <td class="fw-bold">@item.PatientName</td>
+                                    <td>@(string.IsNullOrEmpty(item.PatientPhone) ? "N/A" : item.PatientPhone)</td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0 small">
+                                            @foreach (var med in item.Items)
+                                            {
+                                                <li>
+                                                    <i class="fas fa-prescription text-primary me-1"></i> 
+                                                    <strong>@med.MedicineName</strong> x @med.Qty 
+                                                    @if (!string.IsNullOrEmpty(med.Instructions))
+                                                    {
+                                                        <span class="text-muted font-italic">(@med.Instructions)</span>
+                                                    }
+                                                </li>
+                                            }
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <span class="badge px-3 py-2 rounded-pill @badgeClass">@item.Status</span>
+                                    </td>
+                                    <td class="small text-muted">@item.Remarks</td>
+                                    <td>
+                                        @if (item.Status == "Pending")
+                                        {
+                                            <button onclick="cancelPrescription('@item.Id')" class="btn btn-sm btn-outline-danger font-weight-bold px-3">
+                                                <i class="fas fa-times-circle me-1"></i> Cancel
+                                            </button>
+                                        }
+                                        else if (item.Status == "Dispensed")
+                                        {
+                                            <a href="/Sales/Receipt/@item.SaleId" target="_blank" class="btn btn-sm btn-outline-success font-weight-bold px-3">
+                                                <i class="fas fa-receipt me-1"></i> Invoice
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted small">No actions</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-5 text-muted">
+                                    <i class="fas fa-file-invoice fa-3x mb-3 opacity-25"></i>
+                                    <h6>No prescriptions created yet.</h6>
+                                    <p class="small text-secondary">Click "New Prescription" to start adding requests for patients.</p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            if ($('#prescriptionTable tbody tr').length > 1 || !$('#prescriptionTable tbody tr td').hasClass('text-center')) {
+                $('#prescriptionTable').DataTable({
+                    order: [[0, "desc"]],
+                    pageLength: 10,
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
+                });
+            }
+        });
+
+        function cancelPrescription(id) {
+            Swal.fire({
+                title: 'Cancel Prescription?',
+                text: "Are you sure you want to cancel this pending prescription?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, Cancel it!',
+                cancelButtonText: 'No, Keep it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/DoctorPrescription/Cancel/' + id, function (res) {
+                        if (res.success) {
+                            toastr.success(res.message);
+                            setTimeout(() => { location.reload(); }, 800);
+                        } else {
+                            toastr.error(res.message);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

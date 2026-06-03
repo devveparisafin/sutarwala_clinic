@@ -91,39 +91,57 @@ namespace PharmacyERP.Web.Services
 
         public async Task<InventoryReportViewModel> GetInventoryReportAsync(string reportType)
         {
-            // Fetch all active batches
+            // 1. Fetch all active stock batches
             var batches = await _batchCollection.Find(b => !b.IsDeleted && b.IsActive && b.CurrentQty > 0).ToListAsync();
+            var batchNos = batches.Select(b => b.BatchNo).Distinct().ToList();
+
+            // 2. Fetch corresponding purchase details in bulk (one query!)
+            var purchaseDetailsList = await _detailRepo.Find(t => batchNos.Contains(t.BatchNo)).ToListAsync();
+            var purchaseDetailsDict = purchaseDetailsList.GroupBy(x => x.BatchNo).ToDictionary(g => g.Key, g => g.FirstOrDefault());
+
+            // 3. Fetch purchase master records in bulk (one query!)
+            var masterIds = purchaseDetailsList.Select(pd => pd.PurchaseMasterId).Distinct().ToList();
+            var purchaseMastersList = await _purchaseCollection.Find(t => masterIds.Contains(t.Id)).ToListAsync();
+            var purchaseMastersDict = purchaseMastersList.ToDictionary(pm => pm.Id!);
+
+            // 4. Fetch medicines in bulk and map them to dictionary for O(1) lookup
             var medicines = await _medicineCollection.Find(m => !m.IsDeleted).ToListAsync();
-            
+            var medicineDict = medicines.ToDictionary(m => m.Id!);
+
             var stockItems = new List<StockItem>();
 
             foreach (var batch in batches)
             {
-                var purchaseDetails = await _detailRepo.Find(t => t.BatchNo == batch.BatchNo).FirstOrDefaultAsync();
-                var purchaseData = await _purchaseCollection.Find(t=>t.Id==purchaseDetails.PurchaseMasterId).FirstOrDefaultAsync();
-                var med = medicines.FirstOrDefault(m => m.Id == batch.MedicineId);
-                if (med == null) continue;
+                if (!purchaseDetailsDict.TryGetValue(batch.BatchNo, out var purchaseDetails) || purchaseDetails == null)
+                    continue;
+
+                purchaseMastersDict.TryGetValue(purchaseDetails.PurchaseMasterId, out var purchaseData);
+                if (purchaseData == null)
+                    continue;
+
+                if (!medicineDict.TryGetValue(batch.MedicineId, out var med) || med == null)
+                    continue;
+
                 var purchaseRate = purchaseDetails.PurchaseRate / purchaseDetails.UnitsPerStrip;
                 var gstAmount = (purchaseRate * purchaseDetails.GST) / 100;
-                var unitPrice = (purchaseRate + gstAmount)-(purchaseDetails.DiscountAmount);
+                var unitPrice = (purchaseRate + gstAmount) - purchaseDetails.DiscountAmount;
+
                 stockItems.Add(new StockItem
                 {
                     MedicineName = med.Name,
-                    Category = med.CategoryId, // Ideally we would join category name, keeping simple here
-                    Manufacturer = med.ManufacturerId, // Same
+                    Category = med.CategoryId, 
+                    Manufacturer = med.ManufacturerId, 
                     BatchNumber = batch.BatchNo,
                     CurrentStock = batch.CurrentQty,
                     ExpiryDate = batch.ExpiryDate,
                     UnitPrice = unitPrice,
-                    TotalValue = (batch.CurrentQty * unitPrice)-(purchaseData.DiscountAmount+purchaseData.OtherDiscount)
+                    TotalValue = (batch.CurrentQty * unitPrice) - (purchaseData.DiscountAmount + purchaseData.OtherDiscount)
                 });
             }
 
-            
             // Apply Filters based on Report Type
             if (reportType == "LowStock")
             {
-                // In a real scenario, compare with Medicine.ReorderLevel. We'll simulate < 20 as low stock
                 stockItems = stockItems.Where(x => x.CurrentStock < 20).ToList();
             }
             else if (reportType == "Expiring")
@@ -145,7 +163,6 @@ namespace PharmacyERP.Web.Services
             var startUtc = startDate.ToUniversalTime();
             var endUtc = endDate.ToUniversalTime().AddDays(1).AddTicks(-1);
 
-            // Using MongoDB Driver strongly typed aggregations for simple Sum
             var salesMatch = Builders<Sale>.Filter.And(
                 Builders<Sale>.Filter.Eq(x => x.IsDeleted, false),
                 Builders<Sale>.Filter.Gte(x => x.SaleDate, startUtc),
@@ -158,9 +175,19 @@ namespace PharmacyERP.Web.Services
                 Builders<PurchaseMaster>.Filter.Lte(x => x.PurchaseDate, endUtc)
             );
 
-            // Fetch data (since grouping just to sum overall totals, fetching and summing via LINQ is safe and faster for overall summary)
-            var sales = await _salesCollection.Find(salesMatch).ToListAsync();
-            var purchases = await _purchaseCollection.Find(purchasesMatch).ToListAsync();
+            // Fetch numeric values in parallel using minimal projections to reduce network payload
+            var salesTask = _salesCollection.Find(salesMatch)
+                .Project(x => new Sale { TotalAmount = x.TotalAmount, TaxAmount = x.TaxAmount })
+                .ToListAsync();
+
+            var purchasesTask = _purchaseCollection.Find(purchasesMatch)
+                .Project(x => new PurchaseMaster { TotalAmount = x.TotalAmount, TaxAmount = x.TaxAmount })
+                .ToListAsync();
+
+            await Task.WhenAll(salesTask, purchasesTask);
+
+            var sales = salesTask.Result;
+            var purchases = purchasesTask.Result;
 
             var summary = new FinancialSummary
             {

@@ -1,351 +1,351 @@
 {
   "Files": [
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PharmacyERP.Web.bundle.scp.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PharmacyERP.Web.bundle.scp.css",
       "PackagePath": "staticwebassets\\PharmacyERP.Web.bundle.scp.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\css\\site.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\favicon.ico",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\img\\logo.jpg.jpeg",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\img\\logo.jpg.jpeg",
       "PackagePath": "staticwebassets\\img\\logo.jpg.jpeg"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\quick-add.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\js\\quick-add.js",
       "PackagePath": "staticwebassets\\js\\quick-add.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\js\\site.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\chartjs\\chart.umd.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\chartjs\\chart.umd.min.js",
       "PackagePath": "staticwebassets\\lib\\chartjs\\chart.umd.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.bootstrap5.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.bootstrap5.min.css",
       "PackagePath": "staticwebassets\\lib\\datatables\\buttons.bootstrap5.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.bootstrap5.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.bootstrap5.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\buttons.bootstrap5.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.html5.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.html5.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\buttons.html5.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.print.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\buttons.print.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\buttons.print.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.bootstrap5.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.bootstrap5.min.css",
       "PackagePath": "staticwebassets\\lib\\datatables\\dataTables.bootstrap5.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.bootstrap5.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.bootstrap5.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\dataTables.bootstrap5.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.buttons.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\dataTables.buttons.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\dataTables.buttons.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\jquery.dataTables.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\jquery.dataTables.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\jquery.dataTables.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\jszip.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\jszip.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\jszip.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\pdfmake.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\pdfmake.min.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\pdfmake.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\vfs_fonts.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\datatables\\vfs_fonts.js",
       "PackagePath": "staticwebassets\\lib\\datatables\\vfs_fonts.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\css\\all.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\css\\all.min.css",
       "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\all.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-brands-400.woff2",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-brands-400.woff2",
       "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-brands-400.woff2"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-regular-400.woff2",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-regular-400.woff2",
       "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-regular-400.woff2"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-solid-900.woff2",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\fontawesome\\webfonts\\fa-solid-900.woff2",
       "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-solid-900.woff2"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2-bootstrap-5-theme.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2-bootstrap-5-theme.min.css",
       "PackagePath": "staticwebassets\\lib\\select2\\select2-bootstrap-5-theme.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2.min.css",
       "PackagePath": "staticwebassets\\lib\\select2\\select2.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\select2\\select2.min.js",
       "PackagePath": "staticwebassets\\lib\\select2\\select2.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\sweetalert2\\sweetalert2.all.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\sweetalert2\\sweetalert2.all.min.js",
       "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.all.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\toastr\\toastr.min.css",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\toastr\\toastr.min.css",
       "PackagePath": "staticwebassets\\lib\\toastr\\toastr.min.css"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\lib\\toastr\\toastr.min.js",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\lib\\toastr\\toastr.min.js",
       "PackagePath": "staticwebassets\\lib\\toastr\\toastr.min.js"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\uploads\\prescriptions\\74057ca5-fd73-408b-9be7-85c38511bd71_demo prescription.jpg",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\uploads\\prescriptions\\74057ca5-fd73-408b-9be7-85c38511bd71_demo prescription.jpg",
       "PackagePath": "staticwebassets\\uploads\\prescriptions\\74057ca5-fd73-408b-9be7-85c38511bd71_demo prescription.jpg"
     },
     {
-      "Id": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\wwwroot\\uploads\\store\\store_logo_0b2df3a0.jpeg",
+      "Id": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\wwwroot\\uploads\\store\\store_logo_0b2df3a0.jpeg",
       "PackagePath": "staticwebassets\\uploads\\store\\store_logo_0b2df3a0.jpeg"
     },
     {

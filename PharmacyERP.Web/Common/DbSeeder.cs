@@ -90,7 +90,7 @@ namespace PharmacyERP.Web.Common
             var roleRepository = serviceProvider.GetRequiredService<IBaseRepository<Role>>();
 
             // 1. Seed Roles
-            var roles = new List<string> { AppConstants.Roles.Admin, AppConstants.Roles.Pharmacist, AppConstants.Roles.Cashier };
+            var roles = new List<string> { AppConstants.Roles.Admin, AppConstants.Roles.Pharmacist, AppConstants.Roles.Cashier, AppConstants.Roles.Doctor };
             foreach (var roleName in roles)
             {
                 var existingRole = await roleRepository.FindAsync(x => x.Name == roleName);

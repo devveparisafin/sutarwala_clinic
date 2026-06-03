@@ -41,4 +41,24 @@ namespace PharmacyERP.Web.Models.ViewModels.Masters
         [StringLength(50, MinimumLength = 1)]
         public string Name { get; set; } = null!;
     }
+
+    public class QuickAddRackViewModel
+    {
+        [Required(ErrorMessage = "Rack Name is required")]
+        [StringLength(50, MinimumLength = 1)]
+        public string Name { get; set; } = null!;
+    }
+
+    public class QuickAddCustomerViewModel
+    {
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; } = null!;
+
+        [Required(ErrorMessage = "Mobile Number is required")]
+        [RegularExpression(@"^\d{10,15}$", ErrorMessage = "Invalid Mobile Number")]
+        public string Phone { get; set; } = null!;
+
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string? Email { get; set; }
+    }
 }

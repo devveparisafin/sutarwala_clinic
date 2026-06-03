@@ -171,25 +171,29 @@
             // Auto-focus the first field
             $('#Name').focus();
 
-            // Initialize Select2 with auto-next-field logic
-            $('.select2').select2({
+            // 1. Initialize generic Select2 dropdowns (excluding Quick Add masters to prevent conflicts)
+            $('.select2').not('#GenericId, #ManufacturerId, #CategoryId, #UnitId, #RackId').select2({
                 theme: 'bootstrap-5'
-            }).on('select2:select', function (e) {
-                // Move focus to the next logical field after selection
-                var nextTab = parseInt($(this).attr('tabindex')) + 1;
-                $('[tabindex="' + nextTab + '"]').focus();
-                
-                // If the next field is also a select2, open it
-                if ($('[tabindex="' + nextTab + '"]').hasClass('select2')) {
-                    $('[tabindex="' + nextTab + '"]').select2('open');
-                }
             });
 
-            // Initialize Quick Add for Masters
+            // 2. Initialize Quick Add for Masters (which initializes Select2 with custom options)
             QuickAddManager.init('#GenericId', 'GenericMedicine');
             QuickAddManager.init('#ManufacturerId', 'Manufacturer');
             QuickAddManager.init('#CategoryId', 'MedicineCategory');
             QuickAddManager.init('#UnitId', 'MedicineUnit');
+            QuickAddManager.init('#RackId', 'Rack');
+
+            // 3. Register auto-next-field focus logic on all Select2 fields
+            $('.select2').on('select2:select', function (e) {
+                var nextTab = parseInt($(this).attr('tabindex')) + 1;
+                var $nextEl = $('[tabindex="' + nextTab + '"]');
+                if ($nextEl.length) {
+                    $nextEl.focus();
+                    if ($nextEl.hasClass('select2')) {
+                        $nextEl.select2('open');
+                    }
+                }
+            });
 
             // Toggle Loose Sale Section
             $('#chkIsLooseSale').on('change', function() {

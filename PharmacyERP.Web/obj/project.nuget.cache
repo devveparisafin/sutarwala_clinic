@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xHKtRBTQWfskvtVfa2GnSIv79g8oC4oBHJiTH+Oqg1wMO3HtN/U8MUaqHY4NJRWov7FT/AgYSXJ/p7ftBVYyJg==",
+  "dgSpecHash": "ZtFKaDFOmRd6Tuq3x9cZf64OyQV9QBG+D/Hi2bDbRSLEAcUzTbaMF1KMebrby8vZ6i9fYp2hDvGpfkdD0ERjXg==",
   "success": true,
-  "projectFilePath": "D:\\Work\\New folder\\clinic\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
+  "projectFilePath": "D:\\Work\\sutarwala medical\\clinic 1.4\\PharmacyERP.Web\\PharmacyERP.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

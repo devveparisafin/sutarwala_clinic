@@ -24,5 +24,9 @@ namespace PharmacyERP.Web.Models.ViewModels
         public decimal GST { get; set; }
 
         public int UnitsPerStrip { get; set; } = 1;
+
+        public bool IsLooseSale { get; set; }
+
+        public string? LooseUnitName { get; set; }
     }
 }

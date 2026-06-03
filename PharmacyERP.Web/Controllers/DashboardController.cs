@@ -19,6 +19,10 @@ namespace PharmacyERP.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole("Doctor"))
+            {
+                return RedirectToAction("Index", "DoctorPrescription");
+            }
             var data = await _dashboardService.GetDashboardDataAsync();
             return View(data);
         }

@@ -70,8 +70,13 @@ namespace PharmacyERP.Web.Services
             var customer = await _customerRepo.GetByIdAsync(customerId);
             if (customer == null) return new CustomerHistoryViewModel();
 
-            var prescriptions = await _prescriptionRepo.FindAsync(p => p.CustomerId == customerId);
-            var sales = await _saleRepo.FindAsync(s => s.CustomerId == customerId || s.CustomerPhone == customer.MobileNumber);
+            var prescriptionsTask = _prescriptionRepo.FindAsync(p => p.CustomerId == customerId);
+            var salesTask = _saleRepo.FindAsync(s => s.CustomerId == customerId || s.CustomerPhone == customer.MobileNumber);
+
+            await Task.WhenAll(prescriptionsTask, salesTask);
+
+            var prescriptions = prescriptionsTask.Result;
+            var sales = salesTask.Result;
 
             return new CustomerHistoryViewModel
             {
@@ -171,8 +176,13 @@ namespace PharmacyERP.Web.Services
             var customer = await _customerRepo.GetByIdAsync(customerId);
             if (customer == null) return null;
 
-            var sales = await _saleRepo.FindAsync(s => s.CustomerId == customerId && s.PaymentMode == "Credit" && !s.IsDeleted);
-            var payments = await _paymentRepo.FindAsync(p => p.CustomerId == customerId && !p.IsDeleted);
+            var salesTask = _saleRepo.FindAsync(s => s.CustomerId == customerId && s.PaymentMode == "Credit" && !s.IsDeleted);
+            var paymentsTask = _paymentRepo.FindAsync(p => p.CustomerId == customerId && !p.IsDeleted);
+
+            await Task.WhenAll(salesTask, paymentsTask);
+
+            var sales = salesTask.Result;
+            var payments = paymentsTask.Result;
 
             var entries = new List<CustomerLedgerEntry>();
 
@@ -232,6 +242,27 @@ namespace PharmacyERP.Web.Services
             await _customerRepo.UpdateAsync(customer.Id!, customer);
 
             return true;
+        }
+
+        public async Task<(bool Success, string Message, string? Id)> QuickAddAsync(PharmacyERP.Web.Models.ViewModels.Masters.QuickAddCustomerViewModel model)
+        {
+            var cleanedName = model.Name.Trim();
+            var cleanedPhone = model.Phone.Trim();
+            var cleanedEmail = model.Email?.Trim();
+
+            var existing = (await _customerRepo.FindAsync(x => x.MobileNumber == cleanedPhone && !x.IsDeleted)).FirstOrDefault();
+            if (existing != null)
+                return (false, "Customer with this mobile number already exists", null);
+
+            var customer = new Customer
+            {
+                Name = cleanedName,
+                MobileNumber = cleanedPhone,
+                Email = cleanedEmail,
+                CreatedAt = DateTime.UtcNow
+            };
+            await _customerRepo.CreateAsync(customer);
+            return (true, "Customer added successfully", customer.Id);
         }
     }
 }

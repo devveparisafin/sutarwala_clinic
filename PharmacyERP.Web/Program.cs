@@ -65,6 +65,7 @@ builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
 builder.Services.AddScoped<IGenericMedicineRepository, GenericMedicineRepository>();
 builder.Services.AddScoped<IBaseRepository<Rack>, BaseRepository<Rack>>();
 builder.Services.AddScoped<IRackRepository, RackRepository>();
+builder.Services.AddScoped<IBaseRepository<DoctorPrescription>, BaseRepository<DoctorPrescription>>();
 // Core Business Services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();

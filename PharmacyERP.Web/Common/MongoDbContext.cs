@@ -20,7 +20,7 @@ namespace PharmacyERP.Web.Common
                     Log.Debug("MongoCommand Started: {CommandName} - {Command}", e.CommandName, e.Command.ToJson());
                 });
                 cb.Subscribe<CommandSucceededEvent>(e => {
-                    if (e.Duration.TotalMilliseconds > 100)
+                    if (e.Duration.TotalMilliseconds > 500)
                     {
                         Log.Warning("SLOW QUERY DETECTED: {CommandName} executed in {Duration}ms", e.CommandName, e.Duration.TotalMilliseconds);
                     }

@@ -1,0 +1,323 @@
+@{
+    ViewData["Title"] = "New Prescription";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-plus-circle me-2 text-primary"></i>Create Prescription</h1>
+        <a asp-action="Index" class="btn btn-outline-secondary py-2 px-4 fw-bold">
+            <i class="fas fa-arrow-left me-2"></i> Back to History
+        </a>
+    </div>
+
+    <div class="row">
+        <!-- Left Column: Patient details & Medicine adding -->
+        <div class="col-lg-5">
+            <div class="card shadow border-0 rounded-3 mb-4">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="card-title mb-0 fw-bold"><i class="fas fa-user-injured me-2"></i>Patient Details</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="mb-3">
+                        <label for="PatientName" class="form-label fw-bold">Patient Name <span class="text-danger">*</span></label>
+                        <input type="text" id="PatientName" class="form-control py-2 shadow-sm" placeholder="Enter patient's full name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="PatientPhone" class="form-label fw-bold">Patient Mobile / Phone</label>
+                        <input type="text" id="PatientPhone" class="form-control py-2 shadow-sm" placeholder="e.g. 9876543210" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Remarks" class="form-label fw-bold">Doctor Notes / Remarks</label>
+                        <textarea id="Remarks" class="form-control shadow-sm" rows="3" placeholder="Enter general instructions, symptoms, or diagnostics..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow border-0 rounded-3 mb-4">
+                <div class="card-header bg-info text-white py-3">
+                    <h5 class="card-title mb-0 fw-bold"><i class="fas fa-search me-2"></i>Add Medicine</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="mb-3">
+                        <label for="medSearch" class="form-label fw-bold">Search Medicine</label>
+                        <select id="medSearch" class="form-control py-2"></select>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="medQty" class="form-label fw-bold">Quantity</label>
+                            <div class="input-group">
+                                <button type="button" class="btn btn-outline-secondary" onclick="adjustQty(-1)">-</button>
+                                <input type="number" id="medQty" class="form-control text-center fw-bold" value="1" min="1" />
+                                <button type="button" class="btn btn-outline-secondary" onclick="adjustQty(1)">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="medInstructions" class="form-label fw-bold">Dosage / Instruction</label>
+                            <select id="medInstructions" class="form-select">
+                                <option value="1-0-1 (After Food)">1-0-1 (After Food)</option>
+                                <option value="1-0-1 (Before Food)">1-0-1 (Before Food)</option>
+                                <option value="1-1-1 (After Food)">1-1-1 (After Food)</option>
+                                <option value="1-1-1 (Before Food)">1-1-1 (Before Food)</option>
+                                <option value="1-0-0 (After Food)">1-0-0 (After Food)</option>
+                                <option value="1-0-0 (Before Food)">1-0-0 (Before Food)</option>
+                                <option value="0-0-1 (After Food)">0-0-1 (After Food)</option>
+                                <option value="0-0-1 (Before Food)">0-0-1 (Before Food)</option>
+                                <option value="As needed (SOS)">As needed (SOS)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <input type="text" id="customInstructions" class="form-control form-control-sm" placeholder="Or enter custom instructions..." />
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-success w-100 py-2 fw-bold" onclick="addItemToPrescription()">
+                            <i class="fas fa-plus me-2"></i> Add to Prescription
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Prescription Summary & Actions -->
+        <div class="col-lg-7">
+            <div class="card shadow border-0 rounded-3 h-100 d-flex flex-column mb-4">
+                <div class="card-header bg-dark text-white py-3">
+                    <h5 class="card-title mb-0 fw-bold"><i class="fas fa-prescription me-2"></i>Prescription Cart</h5>
+                </div>
+                <div class="card-body p-4 flex-grow-1 overflow-auto" style="min-height: 350px;">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle" id="cartTable">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th style="width: 100px;" class="text-center">Qty</th>
+                                    <th>Dosage / Instructions</th>
+                                    <th style="width: 50px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartItems">
+                                <tr>
+                                    <td colspan="4" class="text-center py-5 text-muted" id="emptyCartMessage">
+                                        <i class="fas fa-pills fa-3x mb-3 text-secondary opacity-50"></i>
+                                        <h6>Cart is empty.</h6>
+                                        <p class="small text-secondary">Search and add medicines from the left panel.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-light p-4">
+                    <button type="button" class="btn btn-primary btn-lg w-100 py-3 fw-bold shadow-sm" onclick="submitPrescription()">
+                        <i class="fas fa-paper-plane me-2"></i> SUBMIT PRESCRIPTION TO CLINIC
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let prescriptionCart = [];
+        let selectedMed = null;
+
+        function formatMedicine(med) {
+            if (!med.id) return med.text;
+            return $(`
+                <div class="d-flex justify-content-between align-items-center py-1">
+                    <div>
+                        <span class="fw-bold text-primary">${med.name}</span>
+                        <br/><small class="text-muted">Units/Strip: ${med.unitsPerStrip} | Rack: ${med.rack}</small>
+                    </div>
+                    <div>
+                        <span class="badge bg-light text-dark border">Stock: ${med.stock}</span>
+                    </div>
+                </div>
+            `);
+        }
+
+        function formatMedicineSelection(med) {
+            return med.name || med.text;
+        }
+
+        $(document).ready(function() {
+            $('#medSearch').select2({
+                placeholder: 'Search Medicine...',
+                allowClear: true,
+                ajax: {
+                    url: '/Sales/SearchMedicine',
+                    dataType: 'json',
+                    delay: 250,
+                    data: (params) => ({ term: params.term }),
+                    processResults: (data) => ({ results: data })
+                },
+                templateResult: formatMedicine,
+                templateSelection: formatMedicineSelection
+            }).on('select2:select', function(e) {
+                selectedMed = e.params.data;
+            }).on('select2:clear', function() {
+                selectedMed = null;
+            });
+        });
+
+        function adjustQty(val) {
+            let current = parseInt($('#medQty').val()) || 1;
+            let newVal = current + val;
+            if (newVal < 1) newVal = 1;
+            $('#medQty').val(newVal);
+        }
+
+        function addItemToPrescription() {
+            if (!selectedMed) {
+                toastr.warning("Please search and select a medicine first.");
+                return;
+            }
+
+            let qty = parseInt($('#medQty').val()) || 1;
+            if (qty < 1) {
+                toastr.warning("Quantity must be at least 1.");
+                return;
+            }
+
+            let inst = $('#customInstructions').val().trim();
+            if (!inst) {
+                inst = $('#medInstructions').val();
+            }
+
+            // Check if already in cart
+            let existing = prescriptionCart.find(x => x.medicineId === selectedMed.id);
+            if (existing) {
+                existing.qty += qty;
+                existing.instructions = inst;
+            } else {
+                prescriptionCart.push({
+                    medicineId: selectedMed.id,
+                    medicineName: selectedMed.name,
+                    qty: qty,
+                    instructions: inst
+                });
+            }
+
+            renderCart();
+            
+            // Reset selectors
+            $('#medSearch').val(null).trigger('change');
+            selectedMed = null;
+            $('#medQty').val(1);
+            $('#customInstructions').val('');
+            toastr.success("Medicine added to prescription.");
+        }
+
+        function removeItem(index) {
+            prescriptionCart.splice(index, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            let tbody = $('#cartItems');
+            if (prescriptionCart.length === 0) {
+                tbody.html(`
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted" id="emptyCartMessage">
+                            <i class="fas fa-pills fa-3x mb-3 text-secondary opacity-50"></i>
+                            <h6>Cart is empty.</h6>
+                            <p class="small text-secondary">Search and add medicines from the left panel.</p>
+                        </td>
+                    </tr>
+                `);
+                return;
+            }
+
+            let html = '';
+            prescriptionCart.forEach((item, index) => {
+                html += `
+                    <tr>
+                        <td>
+                            <strong class="text-dark">${item.medicineName}</strong>
+                        </td>
+                        <td class="text-center fw-bold text-primary">${item.qty}</td>
+                        <td>
+                            <span class="badge bg-light text-dark border px-2 py-1">${item.instructions}</span>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-link text-danger p-0" onclick="removeItem(${index})">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.html(html);
+        }
+
+        function submitPrescription() {
+            let patientName = $('#PatientName').val().trim();
+            if (!patientName) {
+                toastr.warning("Patient name is required.");
+                $('#PatientName').focus();
+                return;
+            }
+
+            if (prescriptionCart.length === 0) {
+                toastr.warning("Please add at least one medicine to the prescription cart.");
+                return;
+            }
+
+            let payload = {
+                PatientName: patientName,
+                PatientPhone: $('#PatientPhone').val().trim(),
+                Remarks: $('#Remarks').val().trim(),
+                Items: prescriptionCart
+            };
+
+            Swal.fire({
+                title: 'Submit Prescription?',
+                text: "This prescription will be immediately sent to the clinic sales queue.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#2563eb',
+                cancelButtonColor: '#64748b',
+                confirmButtonText: 'Yes, Submit',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Submitting prescription...',
+                        html: '<div class="spinner-border text-primary my-3" role="status"><span class="visually-hidden">Loading...</span></div>',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        didOpen: () => { Swal.showLoading(); }
+                    });
+
+                    $.ajax({
+                        url: '/DoctorPrescription/Create',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(payload),
+                        success: function(res) {
+                            Swal.close();
+                            if (res.success) {
+                                Swal.fire({
+                                    title: 'Submitted!',
+                                    text: 'The prescription has been added to the sales queue.',
+                                    icon: 'success',
+                                    confirmButtonText: 'View History'
+                                }).then(() => {
+                                    window.location.href = '/DoctorPrescription/Index';
+                                });
+                            } else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function() {
+                            Swal.close();
+                            toastr.error("An error occurred while submitting the prescription.");
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

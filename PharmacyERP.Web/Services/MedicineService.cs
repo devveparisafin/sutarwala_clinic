@@ -3,6 +3,7 @@ using PharmacyERP.Web.Models.Entities;
 using PharmacyERP.Web.Models.ViewModels;
 using PharmacyERP.Web.Helpers;
 using Microsoft.Extensions.Caching.Memory;
+using MongoDB.Driver;
 
 namespace PharmacyERP.Web.Services
 {
@@ -51,37 +52,59 @@ namespace PharmacyERP.Web.Services
 
         public async Task<IEnumerable<MedicineListViewModel>> GetMedicineListAsync()
         {
-            var medicines = await _repository.GetAllAsync();
+            var medicinesTask = _repository.GetAllAsync();
             
-            // Cache-aside static master lists (10 minutes expiration)
-            var categories = await _cache.GetOrCreateAsync("all_categories", entry => {
+            // Cache-aside static master lists (10 minutes expiration) fetched in parallel
+            var categoriesTask = _cache.GetOrCreateAsync("all_categories", entry => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 return _categoryRepo.GetAllAsync();
-            }) ?? new List<MedicineCategory>();
+            });
 
-            var manufacturers = await _cache.GetOrCreateAsync("all_manufacturers", entry => {
+            var manufacturersTask = _cache.GetOrCreateAsync("all_manufacturers", entry => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 return _manufacturerRepo.GetAllAsync();
-            }) ?? new List<Manufacturer>();
+            });
 
-            var units = await _cache.GetOrCreateAsync("all_units", entry => {
+            var unitsTask = _cache.GetOrCreateAsync("all_units", entry => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 return _unitRepo.GetAllAsync();
-            }) ?? new List<MedicineUnit>();
+            });
 
-            var generics = await _cache.GetOrCreateAsync("all_generics", entry => {
+            var genericsTask = _cache.GetOrCreateAsync("all_generics", entry => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 return _genericRepo.GetAllAsync();
-            }) ?? new List<GenericMedicine>();
+            });
 
-            var racks = await _cache.GetOrCreateAsync("all_racks", entry => {
+            var racksTask = _cache.GetOrCreateAsync("all_racks", entry => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 return _rackRepo.GetAllAsync();
-            }) ?? new List<Rack>();
+            });
 
-            // Bulk fetch all active batches to avoid N+1 query loop
-            var allBatches = await _batchRepo.FindAsync(x => x.IsActive && !x.IsDeleted);
-            var stockDict = allBatches.GroupBy(x => x.MedicineId).ToDictionary(g => g.Key, g => g.Sum(x => x.CurrentQty));
+            // Project only MedicineId and CurrentQty from active batches to avoid heavy JSON payload transfers
+            var stockListTask = _batchRepo.Collection
+                .Find(x => x.IsActive && !x.IsDeleted)
+                .Project(x => new { x.MedicineId, x.CurrentQty })
+                .ToListAsync();
+
+            await Task.WhenAll(medicinesTask, categoriesTask, manufacturersTask, unitsTask, genericsTask, racksTask, stockListTask);
+
+            var medicines = medicinesTask.Result;
+            var categories = categoriesTask.Result ?? new List<MedicineCategory>();
+            var manufacturers = manufacturersTask.Result ?? new List<Manufacturer>();
+            var units = unitsTask.Result ?? new List<MedicineUnit>();
+            var generics = genericsTask.Result ?? new List<GenericMedicine>();
+            var racks = racksTask.Result ?? new List<Rack>();
+
+            var stockDict = stockListTask.Result
+                .GroupBy(x => x.MedicineId)
+                .ToDictionary(g => g.Key, g => g.Sum(x => x.CurrentQty));
+
+            // Convert lists to lookup dictionaries for O(1) matching (converts O(N*M) -> O(N))
+            var categoryDict = categories.ToDictionary(c => c.Id!, c => c.Name);
+            var manufacturerDict = manufacturers.ToDictionary(m => m.Id!, m => m.Name);
+            var unitDict = units.ToDictionary(u => u.Id!, u => u.Name);
+            var genericDict = generics.ToDictionary(g => g.Id!, g => g.Name);
+            var rackDict = racks.ToDictionary(r => r.Id!, r => r.Name);
 
             var list = new List<MedicineListViewModel>();
             foreach (var m in medicines)
@@ -91,15 +114,15 @@ namespace PharmacyERP.Web.Services
                     Id = m.Id!,
                     Name = m.Name,
                     Barcode = m.Barcode,
-                    RackName = racks.FirstOrDefault(r => r.Id == m.RackId)?.Name ?? "N/A",
+                    RackName = m.RackId != null && rackDict.TryGetValue(m.RackId, out var rName) ? rName : "N/A",
                     RackLocation = m.RackLocation,
                     StockQuantity = stockDict.TryGetValue(m.Id!, out var qty) ? qty : 0,
                     IsActive = m.IsActive,
                     ImagePath = m.ImagePath,
-                    CategoryName = categories.FirstOrDefault(c => c.Id == m.CategoryId)?.Name ?? "N/A",
-                    ManufacturerName = manufacturers.FirstOrDefault(ma => ma.Id == m.ManufacturerId)?.Name ?? "N/A",
-                    UnitName = units.FirstOrDefault(u => u.Id == m.UnitId)?.Name ?? "N/A",
-                    GenericName = generics.FirstOrDefault(g => g.Id == m.GenericId)?.Name ?? "N/A",
+                    CategoryName = m.CategoryId != null && categoryDict.TryGetValue(m.CategoryId, out var cName) ? cName : "N/A",
+                    ManufacturerName = m.ManufacturerId != null && manufacturerDict.TryGetValue(m.ManufacturerId, out var mName) ? mName : "N/A",
+                    UnitName = m.UnitId != null && unitDict.TryGetValue(m.UnitId, out var uName) ? uName : "N/A",
+                    GenericName = m.GenericId != null && genericDict.TryGetValue(m.GenericId, out var gName) ? gName : "N/A",
                     IsLooseSale = m.IsLooseSale,
                     UnitsPerStrip = m.UnitsPerStrip,
                     LooseUnitName = m.LooseUnitName,

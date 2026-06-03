@@ -9,6 +9,8 @@ namespace PharmacyERP.Web.Repositories
     {
         protected readonly IMongoCollection<T> _collection;
 
+        public IMongoCollection<T> Collection => _collection;
+
         public BaseRepository(IMongoDbContext context)
         {
             _collection = context.GetCollection<T>(typeof(T).Name.ToLower() + "s");

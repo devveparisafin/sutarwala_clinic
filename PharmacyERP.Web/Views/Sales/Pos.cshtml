@@ -80,6 +80,7 @@
                 <input type="text" id="CustomerName" class="form-control mb-2 form-control-sm" value="Walk-in Customer" placeholder="Name" tabindex="4" />
                 <input type="text" id="CustomerPhone" class="form-control form-control-sm" placeholder="Phone" tabindex="5" />
                 <input type="hidden" id="SelectedCustomerId" />
+                <input type="hidden" id="PrescriptionId" value="@ViewBag.PrescriptionId" />
             </div>
 
             <hr class="my-4 opacity-5" />
@@ -241,7 +242,7 @@
             });
 
             // Customer Search
-            $('#customerSearch').select2({
+            QuickAddManager.init('#customerSearch', 'Customer', {
                 placeholder: 'Search Registered Customer (F3)...',
                 allowClear: true,
                 ajax: {
@@ -251,7 +252,9 @@
                     data: (params) => ({ term: params.term }),
                     processResults: (data) => ({ results: data })
                 }
-            }).on('select2:select', function(e) {
+            });
+
+            $('#customerSearch').on('select2:select', function(e) {
                 let data = e.params.data;
                 $('#SelectedCustomerId').val(data.id);
                 $('#CustomerName').val(data.name);
@@ -304,7 +307,64 @@
                     }
                 }
             });
+
+            // Load Doctor Prescription if provided
+            let pId = $('#PrescriptionId').val();
+            if (pId) {
+                loadPrescriptionData(pId);
+            }
         });
+
+        function loadPrescriptionData(pId) {
+            Swal.fire({
+                title: 'Loading Prescription...',
+                html: '<div class="spinner-border text-primary my-3" role="status"><span class="visually-hidden">Loading...</span></div>',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
+
+            $.get('/DoctorPrescription/GetPrescriptionDetails?id=' + pId, function(res) {
+                Swal.close();
+                if (res.success) {
+                    $('#CustomerName').val(res.patientName);
+                    if (res.patientPhone) {
+                        $('#CustomerPhone').val(res.patientPhone);
+                    }
+                    
+                    if (res.items && res.items.length > 0) {
+                        res.items.forEach(med => {
+                            if (med.stock <= 0) {
+                                toastr.warning(`${med.name} is prescribed but is out of stock!`);
+                                return;
+                            }
+                            
+                            cart.push({
+                                id: med.id,
+                                name: med.name,
+                                stripRate: med.price,
+                                gst: med.gst,
+                                qty: med.prescribedQty,
+                                isLoose: false,
+                                unitsPerStrip: med.unitsPerStrip,
+                                stock: med.stock,
+                                isLooseAllowed: med.isLooseSale
+                            });
+                        });
+                        
+                        renderCart();
+                        toastr.success("Prescription loaded successfully into POS cart!");
+                    } else {
+                        toastr.error("No active medicines found in this prescription.");
+                    }
+                } else {
+                    toastr.error("Error loading prescription details: " + res.message);
+                }
+            }).fail(function() {
+                Swal.close();
+                toastr.error("An error occurred while loading prescription details.");
+            });
+        }
 
         function viewCustomerPrescriptions() {
             const customerId = $('#SelectedCustomerId').val();
@@ -558,6 +618,7 @@
                 CustomerName: $('#CustomerName').val(),
                 CustomerPhone: $('#CustomerPhone').val(),
                 PaymentMode: $('#PaymentMode').val(),
+                PrescriptionId: $('#PrescriptionId').val(),
                 DiscountAmount: parseFloat($('#DiscountAmount').val()) || 0,
                 SubTotal: parseFloat($('#lblSubTotal').text().replace('₹', '')),
                 TaxAmount: parseFloat($('#lblTax').text().replace('₹', '')),

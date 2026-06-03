@@ -44,12 +44,14 @@ namespace PharmacyERP.Web.Services
             var supplier = await _repository.GetByIdAsync(supplierId);
             if (supplier == null) return null!;
 
-            // Fetch payments and purchases
-            var allPayments = await _paymentRepo.GetAllAsync();
-            var payments = allPayments.Where(x => x.SupplierId == supplierId).ToList();
+            // Fetch payments and purchases in parallel using direct indexed database queries
+            var paymentsTask = _paymentRepo.FindAsync(x => x.SupplierId == supplierId && !x.IsDeleted);
+            var purchasesTask = _purchaseRepo.FindAsync(x => x.SupplierId == supplierId && !x.IsDeleted);
 
-            var allPurchases = await _purchaseRepo.GetAllAsync();
-            var purchases = allPurchases.Where(x => x.SupplierId == supplierId).ToList();
+            await Task.WhenAll(paymentsTask, purchasesTask);
+
+            var payments = paymentsTask.Result.ToList();
+            var purchases = purchasesTask.Result.ToList();
 
             var model = new SupplierLedgerViewModel
             {

@@ -407,6 +407,8 @@ namespace PharmacyERP.Web.Controllers
                     RackId = model.RackId,
                     GST = model.GST,
                     UnitsPerStrip = model.UnitsPerStrip,
+                    IsLooseSale = model.IsLooseSale,
+                    LooseUnitName = model.LooseUnitName,
                     LowStockThreshold = 10,
                     IsActive = true,
                     CreatedAt = DateTime.UtcNow
